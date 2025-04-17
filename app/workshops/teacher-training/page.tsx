@@ -68,7 +68,7 @@ export default function TeacherTrainingPage() {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
-        <article className="container max-w-4xl py-12 md:py-16 lg:py-24">
+        <article className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-24">
           <div className="flex flex-col items-start gap-4 mb-8">
             <Link href="/workshops">
               <Button variant="ghost" size="sm" className="gap-1">
@@ -92,7 +92,7 @@ export default function TeacherTrainingPage() {
             <Separator className="my-4" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8 md:mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mb-8 md:mb-12">
             <div>
               <div className="relative aspect-square overflow-hidden rounded-lg border">
                 <Image
@@ -139,8 +139,8 @@ export default function TeacherTrainingPage() {
               </div>
             </div>
           </div>
-
-          <div className="mb-12">
+          
+          <div className="mb-12 mx-auto max-w-4xl">
             <div className="bg-blue-50 p-6 rounded-lg border border-blue-100 mb-8">
               <div className="flex flex-col md:flex-row gap-6 items-center">
                 <div className="md:w-1/4 flex justify-center">
@@ -160,8 +160,8 @@ export default function TeacherTrainingPage() {
               </div>
             </div>
 
-            <h2 className="text-2xl font-bold mb-6">What You'll Learn</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-center">What You'll Learn</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
               <Card>
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-center gap-3">
@@ -200,7 +200,7 @@ export default function TeacherTrainingPage() {
                   </div>
                   <p className="text-muted-foreground">
                     Strategies for making STEM accessible to all learners, including differentiation techniques and
-                    culturally responsive teaching approaches.
+                    accommodations for diverse learning needs.
                   </p>
                 </CardContent>
               </Card>
@@ -221,72 +221,72 @@ export default function TeacherTrainingPage() {
             </div>
 
             <div className="mt-12 space-y-6">
-              <h2 className="text-2xl font-bold">Upcoming Workshop Dates</h2>
-              <p className="mb-6">
-                Select from our upcoming workshop sessions. Each workshop focuses on different hands-on projects that
-                you can bring back to your classroom.{" "}
-                <span className="font-medium text-primary">Click on a workshop to see more details.</span>
-              </p>
+              <h2 className="text-2xl font-bold mb-8 text-center">Upcoming Workshop Schedule</h2>
+              <div className="space-y-6 mx-auto max-w-3xl">
+                <p className="text-center md:text-left mb-6">
+                  Select from our upcoming workshop sessions. Each workshop focuses on different hands-on projects that
+                  you can bring back to your classroom.{" "}
+                  <span className="font-medium text-primary">Click on a workshop to see more details.</span>
+                </p>
 
-              <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                <h3 className="text-xl font-semibold mb-4">Spring 2025 Schedule</h3>
-
-                <div className="space-y-4">
-                  {workshops.map((workshop) => (
-                    <div key={workshop.id} className="overflow-hidden">
-                      <button
-                        onClick={() => toggleWorkshop(workshop.id)}
-                        className="flex items-center gap-3 p-3 w-full text-left bg-white rounded-md border border-slate-200 hover:border-primary transition-colors"
-                      >
-                        <div className="bg-primary/10 p-2 rounded-full">
-                          <Calendar className="h-5 w-5 text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="font-medium">
-                            {workshop.date} - {workshop.title}
-                          </p>
-                          <p className="text-sm text-muted-foreground">{workshop.shortDescription}</p>
-                        </div>
-                        <ChevronDown
-                          className={`h-5 w-5 text-muted-foreground transition-transform duration-200 ${expandedWorkshop === workshop.id ? "rotate-180" : ""}`}
-                        />
-                      </button>
-
-                      <AnimatePresence>
-                        {expandedWorkshop === workshop.id && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="bg-white border-x border-b border-slate-200 rounded-b-md p-4 -mt-1 text-sm">
-                              <div className="flex items-center gap-2 mb-3 text-primary">
-                                <Clock className="h-4 w-4" />
-                                <span className="font-medium">{workshop.time}</span>
+                <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold mb-4">Spring 2025 Schedule</h3>
+                  <div className="space-y-4">
+                    {workshops.map((workshop) => (
+                      <div key={workshop.id} className="overflow-hidden">
+                        <button
+                          onClick={() => toggleWorkshop(workshop.id)}
+                          className="flex items-center gap-3 p-3 w-full text-left bg-white rounded-md border border-slate-200 hover:border-primary transition-colors"
+                        >
+                          <div className="bg-primary/10 p-2 rounded-full">
+                            <Calendar className="h-5 w-5 text-primary" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-medium">
+                              {workshop.date} - {workshop.title}
+                            </p>
+                            <p className="text-sm text-muted-foreground">{workshop.shortDescription}</p>
+                          </div>
+                          <ChevronDown
+                            className={`h-5 w-5 text-muted-foreground transition-transform duration-200 ${expandedWorkshop === workshop.id ? "rotate-180" : ""}`}
+                          />
+                        </button>
+                        <AnimatePresence>
+                          {expandedWorkshop === workshop.id && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="bg-white border-x border-b border-slate-200 rounded-b-md p-4 -mt-1 text-sm">
+                                <div className="flex items-center gap-2 mb-3 text-primary">
+                                  <Clock className="h-4 w-4" />
+                                  <span className="font-medium">{workshop.time}</span>
+                                </div>
+                                <p className="text-muted-foreground">{workshop.fullDescription}</p>
+                                <div className="mt-4 flex justify-end">
+                                  <Button size="sm" variant="outline">
+                                    Learn More
+                                  </Button>
+                                </div>
                               </div>
-                              <p className="text-muted-foreground">{workshop.fullDescription}</p>
-                              <div className="mt-4 flex justify-end">
-                                <Button size="sm" variant="outline">
-                                  Learn More
-                                </Button>
-                              </div>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ))}
-                </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ))}
+                  </div>
 
-                <div className="mt-6 text-center">
-                  <a href="https://forms.fillout.com/t/1SJr1oYCRtus" target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="gap-2">
-                      <Calendar className="h-5 w-5" />
-                      Register for Workshops
-                    </Button>
-                  </a>
+                  <div className="mt-6 text-center">
+                    <a href="https://forms.fillout.com/t/1SJr1oYCRtus" target="_blank" rel="noopener noreferrer">
+                      <Button size="lg" className="gap-2">
+                        <Calendar className="h-5 w-5" />
+                        Register for Workshops
+                      </Button>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -294,7 +294,7 @@ export default function TeacherTrainingPage() {
         </article>
       </main>
       <footer className="w-full border-t py-6">
-        <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
+        <div className="container mx-auto max-w-5xl px-4 flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
             © {new Date().getFullYear()} CRACH.AD. All rights reserved.
           </p>

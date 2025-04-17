@@ -62,7 +62,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid max-w-5xl gap-4 sm:gap-6 py-8 sm:py-12 grid-cols-2 sm:grid-cols-2 md:grid-cols-4">
+            <div className="mx-auto grid max-w-5xl gap-4 sm:gap-6 py-8 sm:py-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
               <Link href="/insights" className="block">
                 <Card className="h-full transition-colors hover:bg-muted/50">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -76,19 +76,7 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </Link>
-              <Link href="/courses" className="block">
-                <Card className="h-full transition-colors hover:bg-muted/50">
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-xs sm:text-sm font-medium">Courses</CardTitle>
-                    <Laptop className="h-4 w-4 text-muted-foreground" />
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      Developing and teaching STEM courses for various educational levels.
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
+
               <Link href="/content" className="block">
                 <Card className="h-full transition-colors hover:bg-muted/50">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -115,16 +103,14 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </Link>
-            </div>
-            <div className="mx-auto max-w-5xl py-6">
-              <Link href="/3d-printing" className="block max-w-[calc(25%-1rem)] ml-0">
+              <Link href="/3d-printing" className="block">
                 <Card className="h-full transition-colors hover:bg-muted/50">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">3D Printing</CardTitle>
+                    <CardTitle className="text-xs sm:text-sm font-medium">3D Printing</CardTitle>
                     <Printer3d className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       Custom 3D printing services for educational projects and prototypes.
                     </p>
                   </CardContent>

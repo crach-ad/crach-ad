@@ -172,7 +172,7 @@ export default function CurriculumProjectPage() {
                 <AccordionContent>
                   <div className="pl-7 space-y-3 text-muted-foreground">
                     <p>
-                      Welcome to Your Learning Platform! When you finish courses here, you get a certificate. This
+                      Welcome to Your Learning Platform! When you finish learning modules here, you get a certificate. This
                       certificate shows what you've done, and people can see your work by scanning the QR code on it.
                     </p>
                     <ul className="list-disc pl-6 space-y-2">

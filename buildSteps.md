@@ -15,6 +15,11 @@
 - Fixed layout issues on the Teacher Training page
 - Improved homepage grid layout with balanced cards
 - Fixed structural issues in JSX code across components
+- Added Software Projects card to What I Do section
+- Created dedicated software-projects page with a reusable project component structure
+- Implemented data-driven approach to showcase projects with consistent styling
+- Added crach.move as the first featured project with comprehensive details
+- Added live demo link to the crach.move project at crach-move.vercel.app
 
 ## Deployment Steps
 - Repository initialized for version control

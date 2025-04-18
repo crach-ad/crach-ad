@@ -103,6 +103,19 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </Link>
+              <Link href="/software-projects" className="block">
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-xs sm:text-sm font-medium">Software Projects</CardTitle>
+                    <Laptop className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
+                      Developing innovative software solutions for biometric analysis and educational applications.
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
               <Link href="/3d-printing" className="block">
                 <Card className="h-full transition-colors hover:bg-muted/50">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

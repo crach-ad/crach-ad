@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, BookOpen, Code, Laptop, Users, PrinterIcon as Printer3d, Lock } from "lucide-react"
+import { ArrowRight, BookOpen, Code, Laptop, Users, PrinterIcon as Printer3d, Lock, Mic } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -106,6 +106,19 @@ export default function Home() {
                   <CardContent>
                     <p className="text-xs sm:text-sm text-muted-foreground">
                       Facilitating workshops and professional development for educators and developers.
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link href="/public-speaking" className="block">
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-xs sm:text-sm font-medium">Public Speaking</CardTitle>
+                    <Mic className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
+                      Sharing insights and expertise at conferences, schools, and community events.
                     </p>
                   </CardContent>
                 </Card>

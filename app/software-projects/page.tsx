@@ -78,11 +78,6 @@ const projects = [
         description: "Modular components, clear documentation, and maintainable code.",
         icon: Code,
       },
-      {
-        title: "Production Ready",
-        description: "Easily deployable to Vercel or any modern hosting platform.",
-        icon: ExternalLink,
-      },
     ],
     overview: "kaiSite is a visually striking portfolio website built with Next.js 15 and React 19, designed to showcase creative projects in an interactive, modern way. The highlight of the site is a custom-built 3D Rotating Gallery component, which presents portfolio items in a dynamic carousel with smooth transitions and a strong visual hierarchy. The site is fully responsive, leverages Tailwind CSS for styling, and features a clean, modular codebase with best practices in TypeScript."
   },

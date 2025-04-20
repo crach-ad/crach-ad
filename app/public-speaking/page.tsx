@@ -226,8 +226,8 @@ export default function SpeakingEventsPage() {
         <div className="md:col-span-1">
           <div className="bg-slate-900 rounded-lg overflow-hidden aspect-square flex items-center justify-center">
             <Image
-              src="/healinc-summit.jpeg"
-              alt="HEALinc Summit - Bridge The Future Program"
+              src="/images/healinc-future-health-summit.jpg"
+              alt="HEALinc Future Health Innovation Summit"
               width={400}
               height={400}
               className="object-cover"

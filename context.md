@@ -15,6 +15,7 @@ This project is a Next.js-based website showcasing various educational workshops
 - Added a new Featured Project card for 'kaiSite – Modern 3D Portfolio Website', including a placeholder image, project summary, feature highlights, and an external link to the live site
 - All changes maintain modular code and accessibility best practices
 - (See previous updates for more context)
+- 2025-04-20: Replaced the contents of the `app/public-speaking/page.tsx` file with a more detailed and visually rich Speaking Events page from the provided `speakingEventsPage` source. The new page features multiple events, badges, and a modern layout. Ensured that all imports and references are correct for the target repo's structure.
 
 ## Technology Stack
 - Next.js 15.2.4

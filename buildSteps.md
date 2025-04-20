@@ -25,3 +25,4 @@
 - Repository initialized for version control
 - Code pushed to GitHub repository
 - Preparing for deployment to production environment
+- 2025-04-20: Replaced the contents of the public speaking page with a detailed version from the provided speakingEventsPage source. Site is ready to be deployed to the main branch.

@@ -24,7 +24,7 @@ export default function SpeakingEventsPage() {
         <div className="md:col-span-1">
           <div className="bg-slate-900 rounded-lg overflow-hidden aspect-square flex items-center justify-center">
             <Image
-              src="/edvolution-symposium.jpeg"
+              src="/images/edvolutionpic.jpg"
               alt="EdVolution Symposium at Ohio State University"
               width={400}
               height={400}

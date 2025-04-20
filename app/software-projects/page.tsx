@@ -50,6 +50,42 @@ const projects = [
     ],
     overview: "crach.move is a biometric analysis system designed to visualize and analyze motion tracking data. The application creates a 3D stick figure animation representing human movement, allowing users to study biomechanics and motion patterns."
   },
+  {
+    title: "kaiSite – Modern 3D Portfolio Website",
+    description: "A visually striking portfolio website with a custom 3D Rotating Gallery, built for creative showcases.",
+    githubUrl: "https://github.com/crach-ad/kai-site",
+    liveUrl: "https://kai-virid.vercel.app",
+    image: "/images/kai-site-portfolio.png",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "lucide-react"],
+    features: [
+      {
+        title: "3D Rotating Carousel",
+        description: "Custom React component for an engaging project showcase.",
+        icon: Box,
+      },
+      {
+        title: "Modern UI/UX",
+        description: "Minimalist design, responsive layout, and interactive navigation.",
+        icon: Laptop,
+      },
+      {
+        title: "Optimized Performance",
+        description: "Uses Next.js image optimization and SSR/CSR hydration fixes.",
+        icon: Cpu,
+      },
+      {
+        title: "Clean Architecture",
+        description: "Modular components, clear documentation, and maintainable code.",
+        icon: Code,
+      },
+      {
+        title: "Production Ready",
+        description: "Easily deployable to Vercel or any modern hosting platform.",
+        icon: ExternalLink,
+      },
+    ],
+    overview: "kaiSite is a visually striking portfolio website built with Next.js 15 and React 19, designed to showcase creative projects in an interactive, modern way. The highlight of the site is a custom-built 3D Rotating Gallery component, which presents portfolio items in a dynamic carousel with smooth transitions and a strong visual hierarchy. The site is fully responsive, leverages Tailwind CSS for styling, and features a clean, modular codebase with best practices in TypeScript."
+  },
   // Add more projects here in the future
 ]
 

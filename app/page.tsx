@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, BookOpen, Code, Laptop, Users, PrinterIcon as Printer3d } from "lucide-react"
+import { ArrowRight, BookOpen, Code, Laptop, Users, PrinterIcon as Printer3d, Lock } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -77,8 +77,9 @@ export default function Home() {
                 </Card>
               </Link>
 
-              <Link href="/content" className="block">
-                <Card className="h-full transition-colors hover:bg-muted/50">
+              {/* Content Card (Locked) */}
+              <div className="relative group">
+                <Card className="h-full opacity-50 pointer-events-none select-none">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-xs sm:text-sm font-medium">Content</CardTitle>
                     <Code className="h-4 w-4 text-muted-foreground" />
@@ -88,8 +89,14 @@ export default function Home() {
                       Creating educational content, tutorials, and resources for learners.
                     </p>
                   </CardContent>
+                  {/* Lock overlay */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/60 dark:bg-black/40 rounded-lg z-10">
+                    <Lock className="h-8 w-8 text-muted-foreground mb-2" />
+                    <span className="text-xs text-muted-foreground">Coming Soon</span>
+                  </div>
                 </Card>
-              </Link>
+                <span className="absolute inset-0 z-20" title="This feature is currently unavailable." />
+              </div>
               <Link href="/workshops" className="block">
                 <Card className="h-full transition-colors hover:bg-muted/50">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -116,8 +123,9 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </Link>
-              <Link href="/3d-printing" className="block">
-                <Card className="h-full transition-colors hover:bg-muted/50">
+              {/* 3D Printing Card (Locked) */}
+              <div className="relative group">
+                <Card className="h-full opacity-50 pointer-events-none select-none">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-xs sm:text-sm font-medium">3D Printing</CardTitle>
                     <Printer3d className="h-4 w-4 text-muted-foreground" />
@@ -127,100 +135,14 @@ export default function Home() {
                       Custom 3D printing services for educational projects and prototypes.
                     </p>
                   </CardContent>
+                  {/* Lock overlay */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/60 dark:bg-black/40 rounded-lg z-10">
+                    <Lock className="h-8 w-8 text-muted-foreground mb-2" />
+                    <span className="text-xs text-muted-foreground">Coming Soon</span>
+                  </div>
                 </Card>
-              </Link>
-            </div>
-          </div>
-        </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Featured Projects</h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  A selection of my recent work in STEM education and technology development.
-                </p>
+                <span className="absolute inset-0 z-20" title="This feature is currently unavailable." />
               </div>
-            </div>
-            <div className="mx-auto grid max-w-5xl gap-6 py-12 lg:grid-cols-2">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Stingray Microcontroller</CardTitle>
-                  <CardDescription>Browser-Programmable Development Kit</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Image
-                    src="/images/stingray-classroom-kit.png"
-                    width={400}
-                    height={200}
-                    alt="Stingray Microcontroller Classroom Kit"
-                    className="aspect-video overflow-hidden rounded-lg object-cover"
-                  />
-                  <p className="mt-4 text-sm text-muted-foreground">
-                    A revolutionary classroom microcontroller kit with browser-based programming and no software
-                    installation required.
-                  </p>
-                </CardContent>
-                <CardFooter>
-                  <Link href="/projects/stingray">
-                    <Button variant="outline" size="sm">
-                      Learn More
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>STEM Curriculum Framework</CardTitle>
-                  <CardDescription>3D Modeling, Circuit Design & Fabrication</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Image
-                    src="/images/curriculum-framework.png"
-                    width={400}
-                    height={200}
-                    alt="STEM Curriculum Framework"
-                    className="aspect-video overflow-hidden rounded-lg object-cover"
-                  />
-                  <p className="mt-4 text-sm text-muted-foreground">
-                    A comprehensive curriculum for teaching 3D modeling, circuit design, simulation, and PCB fabrication
-                    with industry-standard tools.
-                  </p>
-                </CardContent>
-                <CardFooter>
-                  <Link href="/projects/curriculum">
-                    <Button variant="outline" size="sm">
-                      Learn More
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>The Happy STEM Project</CardTitle>
-                  <CardDescription>K-12 Engineering & Technology Program</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Image
-                    src="/images/happy-stem-electronics.jpeg"
-                    width={400}
-                    height={200}
-                    alt="Student working on electronics project"
-                    className="aspect-video overflow-hidden rounded-lg object-cover"
-                  />
-                  <p className="mt-4 text-sm text-muted-foreground">
-                    A K-12 engineering, technology, and entrepreneurship program designed to bridge the opportunity gap
-                    for those who lack STEM exposure and engagement opportunities through hands-on learning experiences.
-                  </p>
-                </CardContent>
-                <CardFooter>
-                  <Link href="/projects/happy-stem">
-                    <Button variant="outline" size="sm">
-                      Learn More
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
             </div>
           </div>
         </section>

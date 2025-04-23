@@ -81,6 +81,37 @@ const projects = [
     ],
     overview: "kaiSite is a visually striking portfolio website built with Next.js 15 and React 19, designed to showcase creative projects in an interactive, modern way. The highlight of the site is a custom-built 3D Rotating Gallery component, which presents portfolio items in a dynamic carousel with smooth transitions and a strong visual hierarchy. The site is fully responsive, leverages Tailwind CSS for styling, and features a clean, modular codebase with best practices in TypeScript."
   },
+  {
+    title: "Woo To-Do",
+    description: "A gamified to-do list app that makes productivity fun with XP and leveling",
+    githubUrl: "https://github.com/crach-ad/crachToDo",
+    liveUrl: "https://woodagoat.vercel.app/",
+    image: "/images/woo-todo.png",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Firebase", "Context API"],
+    features: [
+      {
+        title: "Task Management",
+        description: "Create, edit, complete, and delete tasks with intuitive controls and organization options",
+        icon: Box,
+      },
+      {
+        title: "Gamification System",
+        description: "Gain XP and level up by completing tasks, adding a rewarding game-like experience to productivity",
+        icon: Brain,
+      },
+      {
+        title: "Theme Customization",
+        description: "Personalize your productivity experience with different visual themes and styles",
+        icon: Laptop,
+      },
+      {
+        title: "Real-time Sync",
+        description: "Firebase backend enables real-time updates and syncing across multiple devices",
+        icon: Cpu,
+      },
+    ],
+    overview: "Woo To-Do transforms the traditional task management experience by adding game mechanics. Users can earn XP and level up by completing tasks, making productivity more engaging and rewarding. Built with Next.js and Firebase, the app features secure authentication, real-time syncing across devices, and customizable themes."
+  }
   // Add more projects here in the future
 ]
 

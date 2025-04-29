@@ -120,7 +120,12 @@ export default function STEMClubsPage() {
                         <MapPin className="h-5 w-5 text-primary" />
                         <div>
                           <span className="font-medium">Location</span>
-                          <p className="text-sm text-muted-foreground">Meridian School STEM Lab</p>
+                          <p className="text-sm text-muted-foreground">
+                            Meridian School STEM Lab
+                            <Link href="https://www.themeridianschool.com" target="_blank" className="ml-1 text-primary hover:underline">
+                              (School Website)
+                            </Link>
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -240,7 +245,7 @@ export default function STEMClubsPage() {
                                 <div className="space-y-2 text-sm">
                                   <p><span className="font-medium">WHEN?</span> {program.date}: {program.time}</p>
                                   <p>{program.additionalInfo.dates}</p>
-                                  <p className="mt-2"><span className="font-medium">WHERE?</span> {program.location}</p>
+                                  <p className="mt-2"><span className="font-medium">WHERE?</span> {program.location} <Link href="https://www.themeridianschool.com" target="_blank" className="ml-1 text-primary hover:underline">(School Website)</Link></p>
                                   <div className="mt-2">
                                     <p className="font-medium">HOW MUCH?</p>
                                     <p>{program.additionalInfo.cost}</p>

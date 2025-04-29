@@ -51,14 +51,30 @@ export default function WorkshopsPage() {
                   </CardFooter>
                 </Card>
               </Link>
-              <div className="flex items-center justify-center p-6 border rounded-lg border-dashed">
-                <div className="text-center space-y-2">
-                  <h3 className="text-lg font-medium">More Workshops Coming Soon</h3>
-                  <p className="text-muted-foreground">
-                    We're currently planning additional workshops. Check back soon for updates!
-                  </p>
-                </div>
-              </div>
+              <Link href="/workshops/stem-clubs" className="block">
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader>
+                    <CardTitle>After School STEM Clubs</CardTitle>
+                    <CardDescription>Enrichment programs for K-12 students</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg">
+                      <Image
+                        src="/images/stem-club-pic.jpeg"
+                        fill
+                        alt="Students participating in after school STEM activities"
+                        className="object-cover object-center"
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Engaging after-school programs designed to inspire students through hands-on STEM projects and collaborative learning experiences.
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="default">Learn More</Button>
+                  </CardFooter>
+                </Card>
+              </Link>
             </div>
           </div>
         </section>

@@ -19,7 +19,185 @@ export default function SpeakingEventsPage() {
         </p>
       </div>
 
-      {/* First Event */}
+      {/* EdVolution 2025 - Ohio State */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16 border-b pb-16">
+        <div className="md:col-span-1">
+          <div className="bg-slate-900 rounded-2xl overflow-hidden aspect-square flex items-center justify-center">
+            <Image
+              src="/images/edvolution-2025-ohio-state.png"
+              alt="EdVolution 2025 at Ohio State University - Presenting on AI in Education"
+              width={400}
+              height={400}
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        <div className="md:col-span-3">
+          <div className="mb-2">
+            <h2 className="text-2xl font-bold">EdVolution 2025 — Ohio State University</h2>
+          </div>
+
+          <p className="text-muted-foreground mb-4">
+            Artificial Intelligence in Education: best practices for teachers, professors, and district leaders
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Badge variant="secondary">Artificial Intelligence</Badge>
+            <Badge variant="secondary">Education Technology</Badge>
+            <Badge variant="secondary">Best Practices</Badge>
+            <Badge variant="secondary">Ohio State University</Badge>
+            <Badge variant="secondary">K-12 & Higher Ed</Badge>
+          </div>
+
+          <h3 className="text-lg font-semibold mb-2">Event Overview</h3>
+
+          <p className="mb-4">
+            At EdVolution 2025, hosted by Ohio State University's College of Education and Human Ecology, I presented to
+            an audience of 100+ teachers, professors, and district leaders on best practices for integrating artificial
+            intelligence and technology into education. The session explored how educators can confidently adopt AI tools
+            to enhance teaching, learning, and leadership across K-12 and higher education.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"></path>
+                    <path d="M2 20h20"></path>
+                    <path d="M14 12v.01"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Presentation Focus</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Best practices in AI and technology integration in education
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Audience</h4>
+                  <p className="text-muted-foreground text-sm">
+                    100+ teachers, professors, and district leaders
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <path d="M12 17h.01"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Core Themes</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Practical AI adoption for classroom instruction and district leadership
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M12 2v8" />
+                    <path d="m4.93 10.93 1.41 1.41" />
+                    <path d="M2 18h2" />
+                    <path d="M20 18h2" />
+                    <path d="m19.07 10.93-1.41 1.41" />
+                    <path d="M22 22H2" />
+                    <path d="m8 22 4-10 4 10" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Venue</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Ohio State University — College of Education and Human Ecology, 2025
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <Button asChild variant="outline">
+              <a
+                href="https://www.youtube.com/watch?v=nXtGxV8ujr8"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Watch the EdVolution 2025 Presentation
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* EdVolution 2024 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16 border-b pb-16">
         <div className="md:col-span-1">
           <div className="bg-slate-900 rounded-lg overflow-hidden aspect-square flex items-center justify-center">
@@ -35,7 +213,7 @@ export default function SpeakingEventsPage() {
 
         <div className="md:col-span-3">
           <div className="mb-2">
-            <h2 className="text-2xl font-bold">EdVolution Symposium</h2>
+            <h2 className="text-2xl font-bold">EdVolution 2024 — Ohio State University</h2>
           </div>
 
           <p className="text-muted-foreground mb-4">
@@ -177,7 +355,192 @@ export default function SpeakingEventsPage() {
             </div>
           </div>
 
+          <div className="mt-6">
+            <Button asChild variant="outline">
+              <a
+                href="https://www.youtube.com/watch?v=6iAyqaU2Zxw"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Watch the EdVolution 2024 Presentation
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+        </div>
+      </div>
 
+      {/* FinGen Society Webinar - Bites & Insights */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16 border-b pb-16">
+        <div className="md:col-span-1">
+          <div className="bg-slate-900 rounded-2xl overflow-hidden aspect-square flex items-center justify-center">
+            <Image
+              src="/images/fingen-society-webinar.png"
+              alt="FinGen Society Bites & Insights Webinar - Building Your Own AI"
+              width={400}
+              height={400}
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        <div className="md:col-span-3">
+          <div className="mb-2">
+            <h2 className="text-2xl font-bold">FinGen Society — Bites & Insights Webinar</h2>
+          </div>
+
+          <p className="text-muted-foreground mb-4">
+            Building Your Own AI: Practical Tools for the Modern Professional
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Badge variant="secondary">Artificial Intelligence</Badge>
+            <Badge variant="secondary">Financial Services</Badge>
+            <Badge variant="secondary">Productivity</Badge>
+            <Badge variant="secondary">AI Ethics</Badge>
+            <Badge variant="secondary">Webinar</Badge>
+          </div>
+
+          <h3 className="text-lg font-semibold mb-2">Event Overview</h3>
+
+          <p className="mb-4">
+            AI is not here to replace you. It is here to enhance how you think, research, write, and execute. In this
+            Bites & Insights Webinar hosted by FinGen Society — an initiative of the Bahamas Financial Services Board —
+            I led a session on Building Your Own AI: Practical Tools for the Modern Professional. The session focused
+            on practical application: how to build simple AI workflows, enhance research and reporting, improve
+            productivity, and navigate the ethical considerations of using AI within a professional environment.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"></path>
+                    <path d="M2 20h20"></path>
+                    <path d="M14 12v.01"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Presentation Focus</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Building practical AI workflows for everyday professional tasks
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Audience</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Financial services professionals across the Bahamas
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <path d="M12 17h.01"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Core Themes</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Research, reporting, productivity, and AI ethics in practice
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m22 8-10 6L2 8" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Format</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Bites & Insights Q1 Webinar — hosted by FinGen Society
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <Button asChild variant="outline">
+              <a
+                href="https://www.youtube.com/watch?v=NPdwwcQnvwU"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Watch the FinGen Society Webinar
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -502,6 +865,166 @@ export default function SpeakingEventsPage() {
             </div>
           </div>
 
+
+        </div>
+      </div>
+
+      {/* Fourth Event (Oasis On Chain 2026) */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16 border-b pb-16">
+        <div className="md:col-span-1">
+          <div className="bg-slate-900 rounded-2xl overflow-hidden aspect-square flex items-center justify-center">
+            <Image
+              src="/images/oasis-onchain-flyer.jpg"
+              alt="Oasis On Chain 2026 - Crachad Laing Speaker Flyer"
+              width={400}
+              height={400}
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        <div className="md:col-span-3">
+          <div className="mb-2">
+            <h2 className="text-2xl font-bold">Oasis On Chain 2026</h2>
+          </div>
+
+          <p className="text-muted-foreground mb-4">
+            Humans in the loop: building with confidence in an AI-powered world
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Badge variant="secondary">Artificial Intelligence</Badge>
+            <Badge variant="secondary">Builder Mindset</Badge>
+            <Badge variant="secondary">Professional Development</Badge>
+            <Badge variant="secondary">The Bahamas</Badge>
+            <Badge variant="secondary">Silk Cotton Villas</Badge>
+          </div>
+
+          <h3 className="text-lg font-semibold mb-2">Event Overview</h3>
+
+          <p className="mb-4">
+            We need more humans in the loop that are comfortable and confident utilizing AI tools. At Oasis On Chain 2026
+            in Nassau, Bahamas, I had the opportunity to work with groups of professionals across industries and emerging
+            college graduates. My message was simple: get out and build!
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"></path>
+                    <path d="M2 20h20"></path>
+                    <path d="M14 12v.01"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Presentation Focus</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Empowering humans to confidently build with AI tools
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <path d="M12 17h.01"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Audience Engagement</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Professionals across industries and emerging college graduates
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M12 20h9"></path>
+                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Core Message</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Get out and build — humans in the loop drive real impact
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Venue & Date</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Silk Cotton Villas, Nassau, Bahamas — January 31, 2026
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>

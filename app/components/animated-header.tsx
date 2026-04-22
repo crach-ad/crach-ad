@@ -41,8 +41,9 @@ export function AnimatedHeader() {
   const logoText = "CRACH.AD"
   const navItems = [
     { name: "Insights", href: "/insights" },
-    { name: "Content", href: "/content" },
     { name: "Workshops", href: "/workshops" },
+    { name: "Speaking", href: "/public-speaking" },
+    { name: "Projects", href: "/software-projects" },
     { name: isMobile ? "Collab" : "Collaborators", href: "/collaborators" },
   ]
 

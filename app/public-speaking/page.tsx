@@ -197,6 +197,333 @@ export default function SpeakingEventsPage() {
         </div>
       </div>
 
+      {/* Happy STEM Teacher Workshop */}
+      <div id="happy-stem-teacher-workshop" className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16 border-b pb-16 scroll-mt-24">
+        <div className="md:col-span-1">
+          <div className="bg-slate-900 rounded-2xl overflow-hidden aspect-square flex items-center justify-center">
+            <Image
+              src="/placeholder.jpg"
+              alt="Happy STEM Teacher Workshop"
+              width={400}
+              height={400}
+              className="object-cover w-full h-full"
+            />
+          </div>
+        </div>
+
+        <div className="md:col-span-3">
+          <div className="mb-2">
+            <h2 className="text-2xl font-bold">Happy STEM Teacher Workshop</h2>
+          </div>
+
+          <p className="text-muted-foreground mb-4">
+            CAD in education, manufacturing in the classroom, and applied mathematics through CAD
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Badge variant="secondary">CAD</Badge>
+            <Badge variant="secondary">TinkerCAD</Badge>
+            <Badge variant="secondary">Classroom Manufacturing</Badge>
+            <Badge variant="secondary">Applied Mathematics</Badge>
+            <Badge variant="secondary">STEM Education</Badge>
+          </div>
+
+          <h3 className="text-lg font-semibold mb-2">Event Overview</h3>
+
+          <p className="mb-4">
+            This Happy STEM teacher workshop explored how CAD can become a core part of the K-12 STEM toolkit.
+            Participants worked through CAD in education, manufacturing in the classroom, and applied mathematics
+            through CAD — connecting geometry, measurement, and problem-solving to real, fabricable designs. TinkerCAD
+            was introduced as a student-friendly onboarding tool, giving teachers a low-barrier entry point they can
+            take straight back to their classrooms.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"></path>
+                    <path d="M2 20h20"></path>
+                    <path d="M14 12v.01"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Workshop Focus</h4>
+                  <p className="text-muted-foreground text-sm">
+                    CAD in education, classroom manufacturing, and applied mathematics
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Audience</h4>
+                  <p className="text-muted-foreground text-sm">
+                    K-12 STEM teachers looking to bring CAD into their classrooms
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Tooling</h4>
+                  <p className="text-muted-foreground text-sm">
+                    TinkerCAD introduced as a student-friendly onboarding tool for CAD
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <path d="M12 17h.01"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Classroom Takeaways</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Practical projects connecting design, fabrication, and applied math
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* OSU Preservice Teacher Workshop 2025 */}
+      <div id="osu-preservice-workshop" className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16 border-b pb-16 scroll-mt-24">
+        <div className="md:col-span-1">
+          <div className="bg-slate-900 rounded-2xl overflow-hidden aspect-square flex items-center justify-center">
+            <Image
+              src="/images/osu-preservice-workshop.jpg"
+              alt="Delivering a preservice teacher workshop at Ohio State University"
+              width={400}
+              height={400}
+              className="object-cover w-full h-full"
+            />
+          </div>
+        </div>
+
+        <div className="md:col-span-3">
+          <div className="mb-2">
+            <h2 className="text-2xl font-bold">Ohio State University — Preservice Teacher Workshop</h2>
+          </div>
+
+          <p className="text-muted-foreground mb-4">
+            Best practices in STEM education, the role of technology in the classroom, and AI in education
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Badge variant="secondary">Preservice Teachers</Badge>
+            <Badge variant="secondary">STEM Education</Badge>
+            <Badge variant="secondary">Education Technology</Badge>
+            <Badge variant="secondary">AI in Education</Badge>
+            <Badge variant="secondary">Agentic Coding</Badge>
+            <Badge variant="secondary">Ohio State University</Badge>
+          </div>
+
+          <h3 className="text-lg font-semibold mb-2">Event Overview</h3>
+
+          <p className="mb-4">
+            In October 2025, I delivered a workshop at Ohio State University to a cohort of preservice teachers,
+            covering best practices in STEM education, the evolving role of technology in the classroom, and how AI is
+            reshaping teaching and learning. The session moved beyond theory: participants worked through practical
+            coding activities and used an agentic coding tool to experience first-hand how these tools can help
+            educators bridge the gap between students' coding skills and the learning outcomes they're trying to reach.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"></path>
+                    <path d="M2 20h20"></path>
+                    <path d="M14 12v.01"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Workshop Focus</h4>
+                  <p className="text-muted-foreground text-sm">
+                    STEM best practices, classroom technology, and AI for teaching and learning
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Audience</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Preservice teachers preparing to enter K-12 classrooms
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Hands-on Activities</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Practical coding tasks paired with an agentic coding tool to model classroom use
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border rounded-lg p-4">
+              <div className="flex items-start">
+                <div className="bg-slate-100 p-2 rounded-md mr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-slate-700"
+                  >
+                    <path d="M12 2v8" />
+                    <path d="m4.93 10.93 1.41 1.41" />
+                    <path d="M2 18h2" />
+                    <path d="M20 18h2" />
+                    <path d="m19.07 10.93-1.41 1.41" />
+                    <path d="M22 22H2" />
+                    <path d="m8 22 4-10 4 10" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm">Venue</h4>
+                  <p className="text-muted-foreground text-sm">
+                    Ohio State University — October 2025
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* EdVolution 2024 */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16 border-b pb-16">
         <div className="md:col-span-1">

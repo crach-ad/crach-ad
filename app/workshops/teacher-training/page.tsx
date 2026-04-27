@@ -229,26 +229,26 @@ export default function TeacherTrainingPage() {
                   <span className="font-medium text-primary">Click on a workshop to see more details.</span>
                 </p>
 
-                <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-4">Spring 2025 Schedule</h3>
+                <div className="bg-slate-50 border border-slate-200 rounded-lg p-6 text-slate-900">
+                  <h3 className="text-xl font-semibold mb-4 text-slate-900">Spring 2025 Schedule</h3>
                   <div className="space-y-4">
                     {workshops.map((workshop) => (
                       <div key={workshop.id} className="overflow-hidden">
                         <button
                           onClick={() => toggleWorkshop(workshop.id)}
-                          className="flex items-center gap-3 p-3 w-full text-left bg-white rounded-md border border-slate-200 hover:border-primary transition-colors"
+                          className="flex items-center gap-3 p-3 w-full text-left bg-white rounded-md border border-slate-200 hover:border-primary transition-colors text-slate-900"
                         >
                           <div className="bg-primary/10 p-2 rounded-full">
                             <Calendar className="h-5 w-5 text-primary" />
                           </div>
                           <div className="flex-1">
-                            <p className="font-medium">
+                            <p className="font-medium text-slate-900">
                               {workshop.date} - {workshop.title}
                             </p>
-                            <p className="text-sm text-muted-foreground">{workshop.shortDescription}</p>
+                            <p className="text-sm text-slate-600">{workshop.shortDescription}</p>
                           </div>
                           <ChevronDown
-                            className={`h-5 w-5 text-muted-foreground transition-transform duration-200 ${expandedWorkshop === workshop.id ? "rotate-180" : ""}`}
+                            className={`h-5 w-5 text-slate-500 transition-transform duration-200 ${expandedWorkshop === workshop.id ? "rotate-180" : ""}`}
                           />
                         </button>
                         <AnimatePresence>
@@ -260,12 +260,12 @@ export default function TeacherTrainingPage() {
                               transition={{ duration: 0.3 }}
                               className="overflow-hidden"
                             >
-                              <div className="bg-white border-x border-b border-slate-200 rounded-b-md p-4 -mt-1 text-sm">
+                              <div className="bg-white border-x border-b border-slate-200 rounded-b-md p-4 -mt-1 text-sm text-slate-900">
                                 <div className="flex items-center gap-2 mb-3 text-primary">
                                   <Clock className="h-4 w-4" />
                                   <span className="font-medium">{workshop.time}</span>
                                 </div>
-                                <p className="text-muted-foreground">{workshop.fullDescription}</p>
+                                <p className="text-slate-600">{workshop.fullDescription}</p>
                                 <div className="mt-4 flex justify-end">
                                   <Button size="sm" variant="outline">
                                     Learn More

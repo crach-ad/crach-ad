@@ -75,6 +75,57 @@ export default function WorkshopsPage() {
                   </CardFooter>
                 </Card>
               </Link>
+              <Link href="/public-speaking#happy-stem-teacher-workshop" className="block">
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader>
+                    <CardTitle>Happy STEM Teacher Workshop</CardTitle>
+                    <CardDescription>CAD, classroom manufacturing & applied mathematics</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg">
+                      <Image
+                        src="/placeholder.jpg"
+                        fill
+                        alt="Happy STEM Teacher Workshop"
+                        className="object-cover object-center"
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      A hands-on session for educators exploring CAD in education, manufacturing in the classroom, and
+                      applied mathematics through CAD — with TinkerCAD introduced as a student-friendly onboarding tool.
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="default">Learn More</Button>
+                  </CardFooter>
+                </Card>
+              </Link>
+              <Link href="/public-speaking#osu-preservice-workshop" className="block">
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader>
+                    <CardTitle>Ohio State University — Preservice Teacher Workshop</CardTitle>
+                    <CardDescription>STEM, EdTech & AI in Education · October 2025</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg">
+                      <Image
+                        src="/images/osu-preservice-workshop.jpg"
+                        fill
+                        alt="Delivering a preservice teacher workshop at Ohio State University"
+                        className="object-cover object-center"
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      A workshop for preservice teachers on best practices in STEM education, the role of technology in
+                      the classroom, and AI in education — with hands-on coding activities and an agentic coding tool to
+                      help bridge the gap between coding skill and student outcomes.
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="default">Learn More</Button>
+                  </CardFooter>
+                </Card>
+              </Link>
               <Link href="/public-speaking#fingen-society-webinar" className="block">
                 <Card className="h-full transition-colors hover:bg-muted/50">
                   <CardHeader>

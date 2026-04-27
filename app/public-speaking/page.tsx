@@ -371,7 +371,7 @@ export default function SpeakingEventsPage() {
       </div>
 
       {/* FinGen Society Webinar - Bites & Insights */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16 border-b pb-16">
+      <div id="fingen-society-webinar" className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16 border-b pb-16 scroll-mt-24">
         <div className="md:col-span-1">
           <div className="bg-slate-900 rounded-2xl overflow-hidden aspect-square flex items-center justify-center">
             <Image

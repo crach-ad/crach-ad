@@ -75,6 +75,32 @@ export default function WorkshopsPage() {
                   </CardFooter>
                 </Card>
               </Link>
+              <Link href="/public-speaking#fingen-society-webinar" className="block">
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader>
+                    <CardTitle>FinGen Society — Bites & Insights Webinar</CardTitle>
+                    <CardDescription>Building Your Own AI · January 30, 2026</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg">
+                      <Image
+                        src="/images/fingen-society-webinar.png"
+                        fill
+                        alt="FinGen Society Bites & Insights Webinar - Building Your Own AI"
+                        className="object-cover object-center"
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      A practical session for Bahamian financial services professionals — using Claude inside Excel and
+                      exploring how AI agents can improve common business flows like research, reporting, and recurring
+                      operational tasks.
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="default">Learn More</Button>
+                  </CardFooter>
+                </Card>
+              </Link>
             </div>
           </div>
         </section>

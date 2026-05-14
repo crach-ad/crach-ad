@@ -79,6 +79,34 @@ export default function InsightsPage() {
                   </Link>
                 </CardFooter>
               </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>From Screen to Object: Why CAD and Laser Cutting Belong at the Heart of Maker Education</CardTitle>
+                  <CardDescription className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4" />
+                    <span>Published: 2026</span>
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    Reflections on how CAD design and laser cutting build systems thinking, iteration, and resilience —
+                    grounded in the constructionist ideas of Seymour Papert and the experiential learning philosophy of
+                    John Dewey.
+                  </p>
+                  <div className="mt-4 flex items-center gap-2 text-sm">
+                    <User className="h-4 w-4" />
+                    <span>Classroom insights</span>
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Link href="/insights/cad-laser-cutting">
+                    <Button variant="outline" size="sm">
+                      Read Article
+                    </Button>
+                  </Link>
+                </CardFooter>
+              </Card>
             </div>
           </div>
         </section>

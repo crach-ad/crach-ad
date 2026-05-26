@@ -30,7 +30,7 @@ export default function SummerProgramsPage() {
                 <Card className="h-full transition-colors hover:bg-muted/50">
                   <CardHeader>
                     <CardTitle>STEM Skill Development — Cohort 01</CardTitle>
-                    <CardDescription>Summer 2026 · Jun 29 – Aug 7 · Now enrolling</CardDescription>
+                    <CardDescription>For ages 12–17 · Jun 29 – Aug 7 · Now enrolling</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="mb-4 relative aspect-square overflow-hidden rounded-lg">
@@ -48,6 +48,31 @@ export default function SummerProgramsPage() {
                   </CardContent>
                   <CardFooter>
                     <Button variant="default">Reserve a Seat</Button>
+                  </CardFooter>
+                </Card>
+              </Link>
+              <Link href="/humanintheloop" className="block">
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader>
+                    <CardTitle>Human in the Loop — Vol. 04</CardTitle>
+                    <CardDescription>For professionals · Jun 30 – Aug 4 · Tuesdays 6–8:30 PM</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg">
+                      <Image
+                        src="/human-loop/assets/add03997-c5fb-4aa8-8964-ef3f2965dd4a.png"
+                        fill
+                        alt="Human in the Loop — practical AI training for professionals"
+                        className="object-cover object-center"
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Eight-week practicum on practical AI for educators, executives, operators, and teams. Eight
+                      modules from prompt engineering to integration strategy. $800 — tokens and tool use included.
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="default">View Flyer</Button>
                   </CardFooter>
                 </Card>
               </Link>

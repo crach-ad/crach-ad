@@ -7,5 +7,6 @@ export function ConditionalHeader() {
   const pathname = usePathname()
   if (pathname === "/") return null
   if (pathname?.startsWith("/stem-program")) return null
+  if (pathname?.startsWith("/humanintheloop")) return null
   return <AnimatedHeader />
 }

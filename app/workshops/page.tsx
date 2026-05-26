@@ -26,30 +26,6 @@ export default function WorkshopsPage() {
               <Separator className="my-4" />
             </div>
             <div className="grid gap-6 pt-6 md:grid-cols-2">
-              <Link href="/stem-program" className="block">
-                <Card className="h-full transition-colors hover:bg-muted/50">
-                  <CardHeader>
-                    <CardTitle>STEM Skill Development — Cohort 01</CardTitle>
-                    <CardDescription>Hands-on student cohort · Now enrolling</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg">
-                      <Image
-                        src="/stem-page/assets/photos/page1-hero.jpeg"
-                        fill
-                        alt="Student soldering at a workshop bench"
-                        className="object-cover object-center"
-                      />
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      An applied-build cohort where students design, prototype, and ship — covering soldering, electronics, sensors, 3D printing, and embedded software. Reserve a seat directly from the program page.
-                    </p>
-                  </CardContent>
-                  <CardFooter>
-                    <Button variant="default">Reserve a Seat</Button>
-                  </CardFooter>
-                </Card>
-              </Link>
               <Link href="/workshops/teacher-training" className="block">
                 <Card className="h-full transition-colors hover:bg-muted/50">
                   <CardHeader>

@@ -154,6 +154,69 @@
   will-change: transform;
 }
 
+/* Long-form article typography (insights essays) */
+article .prose {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  padding-left: 1rem;
+}
+@media (min-width: 768px) {
+  article .prose {
+    padding-left: 2.5rem;
+  }
+}
+article .prose p {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  text-indent: 1.75em;
+}
+/* No indent on the very first paragraph, or on the paragraph after a break/heading */
+article .prose > p:first-child,
+article .prose h1 + p,
+article .prose h2 + p,
+article .prose h3 + p,
+article .prose hr + p,
+article .prose [role="separator"] + p {
+  text-indent: 0;
+}
+/* Don't indent the lead paragraph (visually styled with text-xl) */
+article .prose p.text-xl {
+  text-indent: 0;
+}
+article .prose h2 {
+  margin-top: 2.5em;
+  margin-bottom: 0.85em;
+  color: #fff;
+}
+article .prose h3 {
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+  color: #fff;
+}
+article .prose [role="separator"],
+article .prose hr {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+article .prose ul,
+article .prose ol {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.75em;
+}
+article .prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+article .prose blockquote {
+  border-left: 3px solid rgba(255, 255, 255, 0.25);
+  padding-left: 1.25em;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.85);
+}
+
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

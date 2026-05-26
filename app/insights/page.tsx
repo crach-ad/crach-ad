@@ -82,6 +82,33 @@ export default function InsightsPage() {
 
               <Card>
                 <CardHeader>
+                  <CardTitle>AI Is Creating New Spaces for Collaboration</CardTitle>
+                  <CardDescription className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4" />
+                    <span>Published: 2026</span>
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    A reflection on a cross-generational AI workshop where middle schoolers, professionals, and
+                    retirees collaborated as equals — and what that says about the future of teamwork in the age of AI.
+                  </p>
+                  <div className="mt-4 flex items-center gap-2 text-sm">
+                    <User className="h-4 w-4" />
+                    <span>Workshop reflections</span>
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Link href="/insights/ai-collaboration-spaces">
+                    <Button variant="outline" size="sm">
+                      Read Article
+                    </Button>
+                  </Link>
+                </CardFooter>
+              </Card>
+
+              <Card>
+                <CardHeader>
                   <CardTitle>From Screen to Object: Why CAD and Laser Cutting Belong at the Heart of Maker Education</CardTitle>
                   <CardDescription className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />

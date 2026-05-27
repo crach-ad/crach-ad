@@ -761,6 +761,22 @@
   .strip b { color: var(--yellow); font-weight: 600; }
   .strip .right { display: flex; align-items: center; gap: 14px; }
   .qr-wrap { display: flex; flex-direction: row; align-items: center; gap: 10px; }
+  .register-btn {
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    padding: 11px 22px;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 600; font-size: 14px;
+    letter-spacing: 0.01em;
+    box-shadow: 4px 4px 0 var(--orange);
+    transition: transform 80ms ease, box-shadow 80ms ease;
+    white-space: nowrap;
+  }
+  .register-btn:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--orange); }
+  .register-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--orange); }
   .qr {
     width: 72px; height: 72px;
     background: var(--paper);
@@ -952,8 +968,9 @@
             <span>crachad.com/humanintheloop</span>
           </div>
           <div class="right">
+            <a class="register-btn" href="/humanintheloop/register" target="_top">Register now →</a>
             <div class="qr-wrap">
-              <span class="qr-cap">Scan to<br>register →</span>
+              <span class="qr-cap">Or scan<br>to register →</span>
               <div class="qr" id="qr"></div>
             </div>
           </div>

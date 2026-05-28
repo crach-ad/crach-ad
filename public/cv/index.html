@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Crachad Laing — Curriculum Vitae</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #14171d;
+    --ink-soft: #2a2f38;
+    --ink-mute: #5b6471;
+    --paper: #f5f1ea;
+    --paper-warm: #ece6da;
+    --rule: #cbc3b3;
+    --accent: #a85b35;       /* warm terracotta */
+    --accent-deep: #7f4324;
+    --gold: #c08b48;
+    --page-w: 210mm;
+    --page-h: 297mm;
+    --pad-x: 16mm;
+    --pad-y: 12mm;
+    --col-gap: 10mm;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #d9d3c5;
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink);
+    font-size: 9.4pt;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    padding: 32px 0;
+  }
+
+  .doc { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+
+  .page {
+    width: var(--page-w);
+    height: var(--page-h);
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,.35), 0 4px 12px -4px rgba(0,0,0,.18);
+  }
+
+  /* ===== TYPE ===== */
+  .display {
+    font-family: "Newsreader", "Times New Roman", serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .label {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 7.6pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-mute);
+  }
+  .section-title {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 7.8pt;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--accent-deep);
+    margin: 0 0 5mm 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ===== PAGE 1 HERO ===== */
+  .hero {
+    position: relative;
+    padding: 14mm var(--pad-x) 9mm;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10mm;
+    align-items: end;
+  }
+  .name-block .meta-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4mm;
+  }
+  .meta-top .dot {
+    width: 6px; height: 6px; border-radius: 999px; background: var(--accent);
+  }
+  .name {
+    font-size: 52pt;
+    margin: 0;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+  }
+  .name em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .role-line {
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-size: 13pt;
+    color: var(--ink-soft);
+    margin: 5mm 0 0;
+    max-width: 110mm;
+    line-height: 1.25;
+  }
+
+  .portrait {
+    width: 32mm;
+    height: 40mm;
+    background: var(--ink);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 20px -8px rgba(0,0,0,.4);
+  }
+  .portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 35%;
+    filter: grayscale(0.18) contrast(1.02);
+  }
+  .portrait::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(20,23,29,.35) 100%);
+  }
+
+  /* contact bar */
+  .contact-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6mm;
+    padding: 4.5mm var(--pad-x);
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--rule);
+  }
+  .contact-bar .item .label { display: block; margin-bottom: 1px; font-size: 6.8pt; }
+  .contact-bar .item .val {
+    font-size: 8.8pt;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ===== TWO-COL CONTENT ===== */
+  .body {
+    display: grid;
+    grid-template-columns: 60mm 1fr;
+    gap: var(--col-gap);
+    padding: 8mm var(--pad-x) var(--pad-y);
+  }
+  .body--full {
+    display: block;
+    padding: 10mm var(--pad-x) var(--pad-y);
+  }
+
+  .col-left > * + * { margin-top: 5mm; }
+  .col-right > * + * { margin-top: 5mm; }
+
+  /* Profile block */
+  .profile p {
+    margin: 0 0 2.5mm;
+    font-size: 9.2pt;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .profile p:first-of-type {
+    font-family: "Newsreader", serif;
+    font-size: 11.6pt;
+    line-height: 1.35;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .profile p:first-of-type::first-line {
+    /* subtle */
+  }
+
+  /* Competencies */
+  .competencies {
+    columns: 2;
+    column-gap: 6mm;
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .competencies li {
+    break-inside: avoid;
+    padding: 1.6mm 0;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 8.2pt;
+    color: var(--ink);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .competencies li::before {
+    content: "";
+    width: 4px; height: 4px;
+    background: var(--accent);
+    flex: 0 0 4px;
+    transform: translateY(-2px);
+  }
+
+  /* Experience */
+  .role {
+    padding: 0 0 4mm;
+    border-bottom: 1px solid var(--rule);
+  }
+  .role:last-child { border-bottom: none; padding-bottom: 0; }
+  .role + .role { padding-top: 4mm; }
+
+  .role-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 6mm;
+    margin-bottom: 2.5mm;
+  }
+  .role-title {
+    font-family: "Newsreader", serif;
+    font-size: 15pt;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+  }
+  .role-org {
+    font-size: 9pt;
+    color: var(--ink-soft);
+    margin: 1.5mm 0 0;
+    font-weight: 500;
+  }
+  .role-org .sep { color: var(--rule); margin: 0 6px; }
+  .role-org .place { color: var(--ink-mute); font-weight: 400; }
+  .role-dates {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 7.6pt;
+    letter-spacing: 0.06em;
+    color: var(--accent-deep);
+    white-space: nowrap;
+    padding: 1.5mm 2.4mm;
+    background: rgba(168,91,53,.08);
+  }
+  .bullets {
+    margin: 0; padding: 0;
+    list-style: none;
+  }
+  .bullets li {
+    position: relative;
+    padding: 0 0 0.6mm 5mm;
+    font-size: 8.4pt;
+    line-height: 1.35;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .bullets li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.6em;
+    width: 2.6mm; height: 1px;
+    background: var(--accent);
+  }
+
+  /* Sidebar panels */
+  .panel {
+    background: var(--paper-warm);
+    padding: 4.5mm 5mm 5mm;
+    border-top: 2px solid var(--ink);
+  }
+  .panel .panel-title {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 6.8pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 3mm;
+    font-weight: 600;
+  }
+
+  /* Skills */
+  .skills-group + .skills-group { margin-top: 5mm; }
+  .skills-group h4 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 8.6pt;
+    font-weight: 600;
+    margin: 0 0 2mm;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 5px;
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .chips li {
+    font-size: 7.4pt;
+    padding: 1mm 2mm;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .chips.chips--accent li {
+    border-color: rgba(168,91,53,.35);
+    color: var(--accent-deep);
+    background: rgba(168,91,53,.06);
+  }
+
+  /* Education cards */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6mm;
+  }
+  .edu-card {
+    padding: 5mm;
+    background: var(--paper-warm);
+    border-top: 2px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    gap: 2.4mm;
+  }
+  .edu-card .degree {
+    font-family: "Newsreader", serif;
+    font-size: 12pt;
+    line-height: 1.15;
+    margin: 0;
+    font-weight: 500;
+  }
+  .edu-card .field {
+    font-size: 8.4pt;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.35;
+  }
+  .edu-card .inst {
+    margin-top: auto;
+    font-size: 8pt;
+    color: var(--ink-mute);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .edu-card .status {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 7.4pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    padding: 1mm 2mm;
+    background: rgba(168,91,53,.1);
+    align-self: flex-start;
+  }
+
+  /* Research + presentations */
+  .twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10mm;
+  }
+
+  .research .pub-org {
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-size: 11.5pt;
+    color: var(--ink);
+    margin: 0 0 2.5mm;
+  }
+  .research p { margin: 0 0 2.5mm; font-size: 8.6pt; color: var(--ink-soft); line-height: 1.4; }
+
+  .focus-list {
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .focus-list li {
+    padding: 1.5mm 0;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 8.4pt;
+    color: var(--ink);
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .focus-list li::before {
+    content: "→";
+    color: var(--accent);
+    font-size: 10pt;
+  }
+
+  /* Athletics + philosophy footer */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 8mm;
+    align-items: stretch;
+  }
+  .athletics .focus-list li::before { content: "▹"; }
+  .philosophy {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 8mm 8mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .philosophy .label { color: rgba(245,241,234,.55); margin-bottom: 4mm; }
+  .philosophy blockquote {
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-size: 11.5pt;
+    line-height: 1.4;
+    margin: 0;
+    color: var(--paper);
+    text-wrap: pretty;
+  }
+  .philosophy blockquote::before {
+    content: "\201C";
+    font-size: 48pt;
+    line-height: 0;
+    position: relative;
+    top: 14pt;
+    margin-right: 4px;
+    color: var(--accent);
+  }
+  .philosophy .sig {
+    margin-top: 5mm;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 7.4pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* Page footer label */
+  .page-foot {
+    position: absolute;
+    left: var(--pad-x); right: var(--pad-x); bottom: 6mm;
+    display: flex; justify-content: space-between;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 7.4pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .page-foot .name-mini em { color: var(--accent); font-style: normal; }
+
+  /* PRINT */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .doc { gap: 0; }
+    .page {
+      box-shadow: none;
+      page-break-after: always;
+      break-after: page;
+    }
+    .page:last-child { page-break-after: auto; break-after: auto; }
+  }
+
+  /* Tiny helpers */
+  .stack-tight > * + * { margin-top: 4mm; }
+</style>
+</head>
+<body>
+
+<main class="doc">
+
+  <!-- ============================================================
+       PAGE 1 — Hero + Profile + Competencies + first 2 roles
+  ============================================================ -->
+  <article class="page" data-screen-label="01 — Hero">
+
+    <header class="hero">
+      <div class="hero-grid">
+        <div class="name-block">
+          <div class="meta-top">
+            <span class="dot"></span>
+            <span class="label">Curriculum Vitae &nbsp;·&nbsp; 2026</span>
+          </div>
+          <h1 class="display name">Crachad<br /><em>Laing</em></h1>
+          <p class="role-line">Head of Educational Technology &nbsp;·&nbsp; STEM educator, innovation specialist &amp; published researcher in AI-enhanced learning.</p>
+        </div>
+        <div class="portrait">
+          <img src="assets/crachad.jpeg" alt="Portrait of Crachad Laing" />
+        </div>
+      </div>
+    </header>
+
+    <section class="contact-bar">
+      <div class="item">
+        <span class="label">Location</span>
+        <span class="val">Nassau, Bahamas</span>
+      </div>
+      <div class="item">
+        <span class="label">Email</span>
+        <span class="val">crachad.laing@gmail.com</span>
+      </div>
+      <div class="item">
+        <span class="label">LinkedIn</span>
+        <span class="val">/in/crachad-laing</span>
+      </div>
+      <div class="item">
+        <span class="label">Portfolio</span>
+        <span class="val">crachadlaing.com</span>
+      </div>
+    </section>
+
+    <section class="body">
+      <aside class="col-left">
+
+        <div>
+          <h3 class="section-title">Core Competencies</h3>
+          <ul class="competencies">
+            <li>Educational Technology Leadership</li>
+            <li>Artificial Intelligence Integration</li>
+            <li>STEM Curriculum Development</li>
+            <li>Digital Literacy Programs</li>
+            <li>Innovation Lab Development</li>
+            <li>Project-Based Learning</li>
+            <li>CAD &amp; Digital Fabrication</li>
+            <li>Robotics &amp; Programmable Electronics</li>
+            <li>Teacher Professional Development</li>
+            <li>Learning Management Systems</li>
+            <li>Computer Science Education</li>
+            <li>Design Technology</li>
+            <li>Data-Driven Instruction</li>
+            <li>Educational Systems Design</li>
+            <li>Cross-Disciplinary Curriculum</li>
+            <li>Technology Strategy</li>
+            <li>Athletic Technology &amp; Biomechanics</li>
+            <li>Public Speaking &amp; Facilitation</li>
+          </ul>
+        </div>
+
+      </aside>
+
+      <section class="col-right">
+
+        <div>
+          <h3 class="section-title">Profile</h3>
+          <div class="profile">
+            <p>Educational technology leader, STEM educator, and innovation specialist with expertise in AI integration, digital fabrication, engineering education, and project-based learning — currently building scalable innovation systems, teacher development, and AI-enhanced learning environments within an international education setting.</p>
+            <p>Combines educational leadership with practical engineering and fabrication expertise: coding, electronics, manufacturing workflows, biomechanics analysis, and technology-driven athletic development. Published researcher and international speaker on the future of learning, AI in education, and emerging technology systems. Seeking international leadership opportunities in educational technology, innovation, AI integration, STEM coordination, and advanced project-based education.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="section-title">Experience</h3>
+
+          <article class="role">
+            <header class="role-head">
+              <div>
+                <h4 class="role-title">Head of Educational Technology</h4>
+                <p class="role-org">King's College School Bahamas</p>
+              </div>
+              <span class="role-dates">2025 — Present</span>
+            </header>
+            <ul class="bullets">
+              <li>Lead school-wide educational technology initiatives across multiple grade levels and departments.</li>
+              <li>Develop long-term strategy for AI integration, digital literacy, innovation systems, and emerging technology implementation.</li>
+              <li>Design and oversee interdisciplinary STEM and maker-based learning experiences incorporating CAD, coding, electronics, robotics, and digital fabrication.</li>
+              <li>Support faculty technology integration through coaching, workshops, and instructional design collaboration.</li>
+              <li>Guide development of student-centered innovation initiatives focused on computational thinking, engineering design, and problem-solving.</li>
+              <li>Lead exploration of immersive and emerging technologies including AI systems, virtual reality, and programmable devices.</li>
+            </ul>
+          </article>
+
+        </div>
+
+      </section>
+    </section>
+
+    <footer class="page-foot">
+      <span class="name-mini">Crachad <em>Laing</em> &nbsp;·&nbsp; Curriculum Vitae</span>
+      <span>01 / 03</span>
+    </footer>
+  </article>
+
+  <!-- ============================================================
+       PAGE 2 — Experience continued
+  ============================================================ -->
+  <article class="page" data-screen-label="02 — Experience">
+
+    <section class="body">
+      <aside class="col-left">
+
+        <div class="panel">
+          <h4 class="panel-title">Programming &amp; Development</h4>
+          <ul class="chips chips--accent">
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>Swift / SwiftUI</li>
+            <li>HTML / CSS</li>
+            <li>SQL</li>
+            <li>Supabase</li>
+            <li>API Integration</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h4 class="panel-title">Educational &amp; STEM Tech</h4>
+          <ul class="chips">
+            <li>LEGO Spike</li>
+            <li>micro:bit</li>
+            <li>Arduino</li>
+            <li>Robotics Systems</li>
+            <li>Sensor Integration</li>
+            <li>Electronics Prototyping</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h4 class="panel-title">Digital Fabrication &amp; Design</h4>
+          <ul class="chips">
+            <li>Tinkercad</li>
+            <li>Fusion 360</li>
+            <li>3D Printing</li>
+            <li>Laser Cutting</li>
+            <li>CAD Modeling</li>
+            <li>Product Prototyping</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h4 class="panel-title">AI &amp; Emerging Tech</h4>
+          <ul class="chips chips--accent">
+            <li>Generative AI Systems</li>
+            <li>AI Workflow Integration</li>
+            <li>Prompt Engineering</li>
+            <li>Educational AI</li>
+            <li>LLM Workflows</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h4 class="panel-title">Platforms &amp; Systems</h4>
+          <ul class="chips">
+            <li>Google Workspace</li>
+            <li>Microsoft 365</li>
+            <li>LMS Platforms</li>
+            <li>Canva</li>
+            <li>Gamma</li>
+            <li>Vercel</li>
+            <li>GitHub</li>
+          </ul>
+        </div>
+
+      </aside>
+
+      <section class="col-right">
+
+        <h3 class="section-title">Experience &nbsp;/&nbsp; cont.</h3>
+
+        <article class="role">
+          <header class="role-head">
+            <div>
+              <h4 class="role-title">Head of Digital Literacy &amp; STEM Education</h4>
+              <p class="role-org">Windsor School</p>
+            </div>
+            <span class="role-dates">2023 — 2025</span>
+          </header>
+          <ul class="bullets">
+            <li>Directed K–12 digital literacy and STEM programming aligned with international curriculum standards.</li>
+            <li>Designed progressive computing and technology pathways spanning coding, robotics, digital citizenship, electronics, and engineering design.</li>
+            <li>Integrated project-based STEM methodologies emphasizing real-world application and iterative problem-solving.</li>
+            <li>Led implementation of maker education initiatives utilizing 3D printing, laser cutting, CAD, programmable electronics, and prototyping systems.</li>
+            <li>Developed AI-focused instructional experiences introducing students and teachers to generative AI systems and emerging technologies.</li>
+            <li>Managed STEM labs, fabrication equipment, and technology integration initiatives across departments.</li>
+            <li>Facilitated professional development workshops for educators focused on AI integration, coding, digital tools, and instructional technology.</li>
+          </ul>
+        </article>
+
+        <article class="role">
+          <header class="role-head">
+            <div>
+              <h4 class="role-title">STEM Program Director</h4>
+              <p class="role-org">Windsor School</p>
+            </div>
+            <span class="role-dates">2017 — 2023</span>
+          </header>
+          <ul class="bullets">
+            <li>Founded and expanded school-wide STEM programming across primary and secondary grade levels.</li>
+            <li>Developed interdisciplinary engineering and computing curricula integrating coding, robotics, CAD, electronics, and fabrication technologies.</li>
+            <li>Established hands-on learning environments focused on design thinking, innovation, and real-world problem-solving.</li>
+            <li>Led implementation of robotics systems, programmable electronics, and maker-centered instructional models.</li>
+            <li>Coordinated STEM competitions, enrichment initiatives, and student innovation showcases.</li>
+            <li>Introduced computational thinking and engineering design practices into broader academic programming.</li>
+            <li>Collaborated with faculty and leadership teams to strengthen technology integration and future-ready learning initiatives.</li>
+          </ul>
+        </article>
+
+        <article class="role">
+          <header class="role-head">
+            <div>
+              <h4 class="role-title">Founder &amp; Director</h4>
+              <p class="role-org">Happy STEM <span class="sep">·</span><span class="place"> Nonprofit STEM Initiative</span></p>
+            </div>
+            <span class="role-dates">2024 — Present</span>
+          </header>
+          <ul class="bullets">
+            <li>Founded and lead a nonprofit STEM initiative focused on engineering, technology, coding, and entrepreneurship education for underserved students.</li>
+            <li>Designed and implemented hands-on weekly STEM programs integrating software development, digital fabrication, electronics, robotics, and engineering design.</li>
+            <li>Built scalable instructional models supporting small-group mentorship and project-based learning.</li>
+            <li>Developed industry-focused STEM workshops and innovation experiences for youth, educators, and community organizations.</li>
+            <li>Organized public technology workshops introducing participants to AI tools, coding, CAD, prototyping, and emerging technologies.</li>
+            <li>Designed pathways helping students transition from block-based coding into text-based programming and software development.</li>
+          </ul>
+        </article>
+
+      </section>
+    </section>
+
+    <footer class="page-foot">
+      <span class="name-mini">Crachad <em>Laing</em> &nbsp;·&nbsp; Curriculum Vitae</span>
+      <span>02 / 03</span>
+    </footer>
+  </article>
+
+  <!-- ============================================================
+       PAGE 3 — Consulting role, Education, Research, Athletics, Philosophy
+  ============================================================ -->
+  <article class="page" data-screen-label="03 — Education &amp; Research">
+
+    <section class="body body--full">
+
+      <article class="role" style="border-bottom: 1px solid var(--rule); padding-bottom: 6mm; margin-bottom: 8mm;">
+        <header class="role-head">
+          <div>
+            <h4 class="role-title">STEM Educator &amp; Innovation Consultant</h4>
+            <p class="role-org">Various Educational &amp; Consulting Roles</p>
+          </div>
+          <span class="role-dates">2019 — Present</span>
+        </header>
+        <ul class="bullets" style="columns: 3; column-gap: 10mm;">
+          <li>Designed and taught computing, coding, robotics, engineering, and digital literacy programs across primary and secondary education levels.</li>
+          <li>Built interdisciplinary learning experiences integrating technology, science, engineering, athletics, and design thinking.</li>
+          <li>Developed student innovation projects utilizing microcontrollers, sensors, programmable robotics, CAD systems, and digital manufacturing tools.</li>
+          <li>Facilitated workshops and presentations on AI, future-ready learning, educational technology, and digital transformation.</li>
+          <li>Consulted on educational systems, technology implementation, curriculum design, and innovation strategy.</li>
+          <li>Supported schools and organizations in developing scalable STEM and educational technology initiatives.</li>
+          <li>Advised on maker education environments, fabrication workflows, AI integration, and emerging technology adoption.</li>
+        </ul>
+      </article>
+
+      <div style="margin-bottom: 8mm;">
+        <h3 class="section-title">Education</h3>
+        <div class="edu-grid">
+          <div class="edu-card">
+            <span class="status">In Progress</span>
+            <h4 class="degree">M.S. Data Science</h4>
+            <p class="field">Quantitative methods, statistical modeling, and applied analytics.</p>
+            <p class="inst">Eastern University</p>
+          </div>
+          <div class="edu-card">
+            <span class="status">Completed</span>
+            <h4 class="degree">B.S. Engineering Technology</h4>
+            <p class="field">Applied engineering systems, manufacturing, and technical design.</p>
+            <p class="inst">— Institution —</p>
+          </div>
+          <div class="edu-card">
+            <span class="status">Completed</span>
+            <h4 class="degree">B.S. Engineering Management</h4>
+            <p class="field">Project leadership, systems thinking, and engineering operations.</p>
+            <p class="inst">— Institution —</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="twocol" style="margin-bottom: 8mm;">
+        <div class="research">
+          <h3 class="section-title">Research &amp; Publications</h3>
+          <p class="pub-org">American Society for Engineering Education</p>
+          <ul class="focus-list">
+            <li>STEM education</li>
+            <li>Design-based learning</li>
+            <li>Educational technology</li>
+            <li>AI-enhanced learning environments</li>
+            <li>Informal &amp; formal learning integration</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="section-title">Speaking &amp; Engagement</h3>
+          <ul class="focus-list">
+            <li>Artificial Intelligence in Education</li>
+            <li>Future-Ready Learning Systems</li>
+            <li>STEM Innovation &amp; Maker Education</li>
+            <li>Digital Literacy &amp; Computational Thinking</li>
+            <li>Technology-Enhanced Learning</li>
+            <li>Project-Based Learning &amp; Engineering Design</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div class="athletics">
+          <h3 class="section-title">Athletics &amp; Performance Technology</h3>
+          <ul class="focus-list">
+            <li>Baseball coaching and athlete development</li>
+            <li>Technology-assisted player analysis</li>
+            <li>Sports performance data systems</li>
+            <li>Motion and biomechanics exploration</li>
+            <li>Rapsodo-assisted training workflows</li>
+            <li>Data-informed coaching strategies</li>
+          </ul>
+        </div>
+
+        <div class="philosophy">
+          <span class="label">Professional Philosophy</span>
+          <blockquote>Technology is most powerful when used to expand creativity, problem-solving, collaboration, and access to opportunity — moving students and educators beyond passive consumption into active creation, innovation, and systems thinking.</blockquote>
+          <span class="sig">— Crachad Laing</span>
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="page-foot">
+      <span class="name-mini">Crachad <em>Laing</em> &nbsp;·&nbsp; Curriculum Vitae</span>
+      <span>03 / 03</span>
+    </footer>
+  </article>
+
+</main>
+
+</body>
+</html>

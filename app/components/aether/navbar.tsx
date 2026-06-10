@@ -11,6 +11,7 @@ const NAV = [
   { name: "Workshops", href: "/workshops" },
   { name: "Speaking", href: "/public-speaking" },
   { name: "Projects", href: "/software-projects" },
+  { name: "Games", href: "/games" },
 ]
 
 export function AetherNavbar() {

@@ -45,6 +45,7 @@ export function AnimatedHeader() {
     { name: "Workshops", href: "/workshops" },
     { name: "Speaking", href: "/public-speaking" },
     { name: "Projects", href: "/software-projects" },
+    { name: "Games", href: "/games" },
     { name: isMobile ? "Collab" : "Collaborators", href: "/collaborators" },
   ]
 

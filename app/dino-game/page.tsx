@@ -99,6 +99,7 @@ export default function DinoGamePage() {
     const cfg: EngineConfig = {
       bodyColor: avatar.body,
       accentColor: avatar.accent,
+      jump: avatar.jump,
       jumpBoost: s.activePerks.includes("jumpBoost"),
       speedBoost: s.activePerks.includes("speedBoost"),
       shield: s.activePerks.includes("shield"),
@@ -502,6 +503,10 @@ function ShopDialog({
                     <p className="font-semibold">{avatar.name}</p>
                     <p className="text-xs leading-tight text-muted-foreground">
                       {avatar.description}
+                    </p>
+                    <p className="flex items-start gap-1 text-[11px] font-medium leading-tight text-primary/90">
+                      <Rocket className="mt-0.5 h-3 w-3 shrink-0" />
+                      {avatar.jump.jumpName}
                     </p>
                     {owned ? (
                       <Button

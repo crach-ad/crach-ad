@@ -8,6 +8,18 @@ export type AvatarId =
   | "golden"
   | "raptor"
 
+export type TrailStyle = "dust" | "flame" | "frost" | "shadow" | "spark" | "sparkle"
+
+export interface JumpProfile {
+  velocity: number // base jump velocity, px/s
+  gravity: number // fall acceleration, px/s^2 (lower = floatier)
+  special?: "double" | "glide" // double = extra mid-air jump; glide = hang time
+  trail: string // particle color
+  trailStyle: TrailStyle
+  // Short human-readable blurb shown in the shop.
+  jumpName: string
+}
+
 export interface Avatar {
   id: AvatarId
   name: string
@@ -15,6 +27,7 @@ export interface Avatar {
   cost: number
   body: string
   accent: string
+  jump: JumpProfile
 }
 
 export interface Perk {
@@ -34,6 +47,13 @@ export const AVATARS: Avatar[] = [
     cost: 0,
     body: "#10b981",
     accent: "#047857",
+    jump: {
+      velocity: 920,
+      gravity: 2600,
+      trail: "#cbd5e1",
+      trailStyle: "dust",
+      jumpName: "Balanced hop with a little kicked-up dust.",
+    },
   },
   {
     id: "blaze",
@@ -42,6 +62,13 @@ export const AVATARS: Avatar[] = [
     cost: 250,
     body: "#f97316",
     accent: "#c2410c",
+    jump: {
+      velocity: 985,
+      gravity: 2700,
+      trail: "#f97316",
+      trailStyle: "flame",
+      jumpName: "Explosive launch leaving a trail of flames.",
+    },
   },
   {
     id: "frost",
@@ -50,6 +77,14 @@ export const AVATARS: Avatar[] = [
     cost: 500,
     body: "#38bdf8",
     accent: "#0369a1",
+    jump: {
+      velocity: 880,
+      gravity: 1850,
+      special: "glide",
+      trail: "#bae6fd",
+      trailStyle: "frost",
+      jumpName: "Floaty glide with long hang-time and ice crystals.",
+    },
   },
   {
     id: "shadow",
@@ -58,6 +93,13 @@ export const AVATARS: Avatar[] = [
     cost: 900,
     body: "#a78bfa",
     accent: "#6d28d9",
+    jump: {
+      velocity: 1050,
+      gravity: 3200,
+      trail: "#a78bfa",
+      trailStyle: "shadow",
+      jumpName: "Snappy, fast-falling leap with shadow afterimages.",
+    },
   },
   {
     id: "raptor",
@@ -66,6 +108,14 @@ export const AVATARS: Avatar[] = [
     cost: 1500,
     body: "#ef4444",
     accent: "#991b1b",
+    jump: {
+      velocity: 900,
+      gravity: 2750,
+      special: "double",
+      trail: "#fca5a5",
+      trailStyle: "spark",
+      jumpName: "Double jump — tap again mid-air for a second leap.",
+    },
   },
   {
     id: "golden",
@@ -74,6 +124,13 @@ export const AVATARS: Avatar[] = [
     cost: 3000,
     body: "#facc15",
     accent: "#a16207",
+    jump: {
+      velocity: 1090,
+      gravity: 2550,
+      trail: "#fde047",
+      trailStyle: "sparkle",
+      jumpName: "Towering majestic leap raining golden sparkles.",
+    },
   },
 ]
 

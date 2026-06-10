@@ -1,15 +1,13 @@
 // Canvas game engine for the Dino Runner. Framework-agnostic, driven by
 // requestAnimationFrame with delta-time so it runs the same on any refresh rate.
 
-import type { PerkId } from "./dino-config"
+import type { TrailStyle } from "./dino-config"
 
 export const GAME_WIDTH = 800
 export const GAME_HEIGHT = 280
 const GROUND_Y = GAME_HEIGHT - 36
 
-const GRAVITY = 2600 // px / s^2
-const BASE_JUMP_V = 920 // px / s
-const BOOSTED_JUMP_V = 1120
+const JUMP_BOOST_MULT = 1.2 // Jump Boost perk velocity multiplier
 const BASE_SPEED = 360 // px / s
 const SPEED_BOOST_START = 460
 const MAX_SPEED = 900
@@ -35,9 +33,29 @@ interface Cloud {
   speed: number
 }
 
+interface Particle {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  life: number
+  maxLife: number
+  size: number
+  color: string
+}
+
+export interface JumpSpec {
+  velocity: number
+  gravity: number
+  special?: "double" | "glide"
+  trail: string
+  trailStyle: TrailStyle
+}
+
 export interface EngineConfig {
   bodyColor: string
   accentColor: string
+  jump: JumpSpec
   jumpBoost: boolean
   speedBoost: boolean
   shield: boolean
@@ -64,6 +82,9 @@ export class DinoEngine {
   private ducking = false
   private legTimer = 0
   private legPhase = 0
+  private jumpsUsed = 0
+  private particles: Particle[] = []
+  private trailTimer = 0
 
   private speed = BASE_SPEED
   private distance = 0
@@ -87,6 +108,9 @@ export class DinoEngine {
     this.dinoY = 0
     this.dinoVY = 0
     this.ducking = false
+    this.jumpsUsed = 0
+    this.particles = []
+    this.trailTimer = 0
     this.distance = 0
     this.speed = this.cfg.speedBoost ? SPEED_BOOST_START : BASE_SPEED
     this.spawnCountdown = 0.8
@@ -111,10 +135,77 @@ export class DinoEngine {
 
   jump() {
     if (!this.running) return
-    if (this.dinoY <= 0.5) {
-      this.dinoVY = this.cfg.jumpBoost ? BOOSTED_JUMP_V : BASE_JUMP_V
-      this.ducking = false
+    const maxJumps = this.cfg.jump.special === "double" ? 2 : 1
+    const grounded = this.dinoY <= 0.5
+    if (!grounded && this.jumpsUsed >= maxJumps) return
+
+    let v = this.cfg.jump.velocity
+    if (this.cfg.jumpBoost) v *= JUMP_BOOST_MULT
+    // A mid-air (double) jump gets a touch less lift than the first.
+    if (!grounded) v *= 0.86
+
+    this.dinoVY = v
+    this.ducking = false
+    this.jumpsUsed = grounded ? 1 : this.jumpsUsed + 1
+    this.emitBurst(grounded ? 10 : 14)
+  }
+
+  // Spawn a burst of particles at the dino's feet, styled per avatar.
+  private emitBurst(count: number) {
+    const baseY = GROUND_Y - this.dinoY
+    const fx = DINO_X + DINO_W / 2
+    for (let i = 0; i < count; i++) this.spawnParticle(fx, baseY, true)
+  }
+
+  private spawnParticle(x: number, y: number, burst: boolean) {
+    const style = this.cfg.jump.trailStyle
+    const color = this.cfg.jump.trail
+    const rnd = (a: number, b: number) => a + Math.random() * (b - a)
+    let vx = rnd(-40, 40)
+    let vy = rnd(-30, 30)
+    let size = rnd(2, 4)
+    let life = rnd(0.3, 0.6)
+
+    switch (style) {
+      case "flame":
+        vx = rnd(-90, -20)
+        vy = rnd(-70, -10)
+        size = rnd(3, 6)
+        life = rnd(0.25, 0.5)
+        break
+      case "frost":
+        vx = rnd(-40, 10)
+        vy = rnd(10, 60)
+        size = rnd(2, 4)
+        life = rnd(0.5, 1)
+        break
+      case "shadow":
+        vx = rnd(-30, 10)
+        vy = rnd(-15, 15)
+        size = rnd(4, 8)
+        life = rnd(0.3, 0.7)
+        break
+      case "spark":
+        vx = rnd(-120, 120) * (burst ? 1 : 0.4)
+        vy = rnd(-120, 40)
+        size = rnd(2, 4)
+        life = rnd(0.2, 0.45)
+        break
+      case "sparkle":
+        vx = rnd(-60, 60)
+        vy = rnd(-90, 20)
+        size = rnd(2, 5)
+        life = rnd(0.4, 0.9)
+        break
+      case "dust":
+      default:
+        vx = rnd(-70, -10)
+        vy = rnd(-20, 10)
+        size = rnd(2, 5)
+        life = rnd(0.25, 0.5)
+        break
     }
+    this.particles.push({ x, y, vx, vy, life, maxLife: life, size, color })
   }
 
   setDuck(on: boolean) {
@@ -129,34 +220,37 @@ export class DinoEngine {
     return this.cfg.speedBoost ? Math.floor(raw * 1.5) : raw
   }
 
+  private addCactus(x: number) {
+    // Cluster size grows with distance: 1 early, up to 3 later on.
+    const maxCluster = this.distance > 3200 ? 3 : this.distance > 1200 ? 2 : 1
+    const count = 1 + Math.floor(Math.random() * maxCluster)
+    const tall = Math.random() < 0.45
+    const h = tall ? 52 : 36
+    const w = (tall ? 20 : 16) * count + (count - 1) * 4
+    this.obstacles.push({ x, y: GROUND_Y - h, w, h, kind: "cactus" })
+    return w
+  }
+
+  private addBird(x: number) {
+    const high = Math.random() < 0.5
+    const h = 26
+    const y = high ? GROUND_Y - DINO_STAND_H - 4 : GROUND_Y - 30
+    this.obstacles.push({ x, y, w: 40, h, kind: "bird", birdFrame: 0 })
+    return 40
+  }
+
   private spawnObstacle() {
-    const r = Math.random()
-    if (r < 0.62) {
-      // Cactus cluster on the ground.
-      const tall = Math.random() < 0.45
-      const count = Math.random() < 0.3 ? 2 : 1
-      const h = tall ? 52 : 36
-      const w = (tall ? 20 : 16) * count + (count - 1) * 4
-      this.obstacles.push({
-        x: GAME_WIDTH + 20,
-        y: GROUND_Y - h,
-        w,
-        h,
-        kind: "cactus",
-      })
-    } else {
-      // Bird at either jump height (low) or duck height (high).
-      const high = Math.random() < 0.5
-      const h = 26
-      const y = high ? GROUND_Y - DINO_STAND_H - 4 : GROUND_Y - 30
-      this.obstacles.push({
-        x: GAME_WIDTH + 20,
-        y,
-        w: 40,
-        h,
-        kind: "bird",
-        birdFrame: 0,
-      })
+    const startX = GAME_WIDTH + 20
+    const w = Math.random() < 0.62 ? this.addCactus(startX) : this.addBird(startX)
+
+    // Once you're running far, sometimes chain a second obstacle a reactable
+    // gap behind the first — more to dodge the deeper you get.
+    const comboChance = Math.min(0.5, this.distance / 7000)
+    if (this.distance > 1600 && Math.random() < comboChance) {
+      const gap = 210 + Math.random() * 140
+      const x2 = startX + w + gap
+      if (Math.random() < 0.55) this.addCactus(x2)
+      else this.addBird(x2)
     }
   }
 
@@ -189,15 +283,46 @@ export class DinoEngine {
     this.distance += this.speed * dt * 0.1
     this.isNight = Math.floor(this.distance / 700) % 2 === 1
 
-    // Vertical physics.
+    // Vertical physics with per-avatar gravity.
     if (this.dinoY > 0 || this.dinoVY > 0) {
       this.dinoY += this.dinoVY * dt
-      this.dinoVY -= GRAVITY * dt
+      this.dinoVY -= this.cfg.jump.gravity * dt
       if (this.dinoY <= 0) {
         this.dinoY = 0
         this.dinoVY = 0
+        this.jumpsUsed = 0
+        // Kick up a little dust on landing.
+        const baseY = GROUND_Y
+        const fx = DINO_X + DINO_W / 2
+        for (let i = 0; i < 5; i++) this.spawnParticle(fx, baseY, false)
       }
     }
+
+    // Continuous trail while airborne (style-dependent).
+    const airborne = this.dinoY > 4
+    const trailing: TrailStyle[] = ["flame", "shadow", "sparkle", "frost", "spark"]
+    if (airborne && trailing.includes(this.cfg.jump.trailStyle)) {
+      this.trailTimer += dt
+      const rate = this.cfg.jump.trailStyle === "shadow" ? 0.05 : 0.03
+      while (this.trailTimer >= rate) {
+        this.trailTimer -= rate
+        this.spawnParticle(
+          DINO_X + DINO_W / 2 + (Math.random() - 0.5) * DINO_W,
+          GROUND_Y - this.dinoY - DINO_STAND_H / 2 + (Math.random() - 0.5) * 20,
+          false,
+        )
+      }
+    }
+
+    // Advance particles.
+    for (const p of this.particles) {
+      p.x -= this.speed * dt * 0.35 // drift with the world a little
+      p.x += p.vx * dt
+      p.y += p.vy * dt
+      p.vy += 220 * dt // light gravity on particles
+      p.life -= dt
+    }
+    this.particles = this.particles.filter((p) => p.life > 0)
 
     // Running leg animation.
     this.legTimer += dt
@@ -215,12 +340,14 @@ export class DinoEngine {
       }
     }
 
-    // Spawn cadence shortens as speed increases.
+    // Spawn cadence shortens (and gets less random) as distance grows, so
+    // obstacles steadily pile up the further you run.
     this.spawnCountdown -= dt
     if (this.spawnCountdown <= 0) {
       this.spawnObstacle()
-      const base = Math.max(0.55, 1.4 - this.distance / 4000)
-      this.spawnCountdown = base + Math.random() * 0.7
+      const base = Math.max(0.38, 1.3 - this.distance / 2600)
+      const spread = Math.max(0.25, 0.7 - this.distance / 8000)
+      this.spawnCountdown = base + Math.random() * spread
     }
 
     // Move obstacles, animate birds, cull off-screen.
@@ -302,8 +429,30 @@ export class DinoEngine {
       else this.drawBird(o)
     }
 
+    // Jump particles (behind the dino so trails read nicely).
+    this.drawParticles()
+
     // Dino.
     this.drawDino()
+  }
+
+  private drawParticles() {
+    const ctx = this.ctx
+    const sparkle = this.cfg.jump.trailStyle === "sparkle"
+    for (const p of this.particles) {
+      const alpha = Math.max(0, Math.min(1, p.life / p.maxLife))
+      ctx.globalAlpha = alpha
+      ctx.fillStyle = p.color
+      if (sparkle) {
+        // Little plus-shaped twinkles.
+        const s = p.size
+        ctx.fillRect(p.x - s, p.y - 1, s * 2, 2)
+        ctx.fillRect(p.x - 1, p.y - s, 2, s * 2)
+      } else {
+        ctx.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size)
+      }
+    }
+    ctx.globalAlpha = 1
   }
 
   private drawCloud(x: number, y: number) {

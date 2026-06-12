@@ -49,7 +49,7 @@ export function FeaturesSection() {
     <section
       ref={ref}
       style={{
-        background: "black",
+        background: "#f5f1ea",
         padding: "7rem 1.5rem 9rem",
         position: "relative",
         overflow: "hidden",
@@ -74,7 +74,7 @@ export function FeaturesSection() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, black 0%, transparent 18%, transparent 82%, black 100%)",
+            "linear-gradient(to bottom, #f5f1ea 0%, transparent 18%, transparent 82%, #f5f1ea 100%)",
           zIndex: 1,
           pointerEvents: "none",
         }}
@@ -83,7 +83,7 @@ export function FeaturesSection() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "rgba(0,0,0,0.55)",
+          background: "rgba(245,241,234,0.62)",
           zIndex: 1,
           pointerEvents: "none",
         }}
@@ -118,7 +118,7 @@ export function FeaturesSection() {
               fontSize: "clamp(2.25rem, 5.2vw, 3.75rem)",
               letterSpacing: "-0.04em",
               lineHeight: 0.95,
-              color: "white",
+              color: "#14171d",
               margin: 0,
             }}
           >
@@ -157,13 +157,13 @@ export function FeaturesSection() {
                     padding: "1.75rem",
                     overflow: "hidden",
                     background:
-                      "linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))",
+                      "linear-gradient(145deg, rgba(236,230,218,0.85), rgba(245,241,234,0.65))",
                     backdropFilter: "blur(40px)",
                     WebkitBackdropFilter: "blur(40px)",
-                    border: "1px solid rgba(255,255,255,0.09)",
+                    border: "1px solid #cbc3b3",
                     boxShadow:
-                      "0 1px 0 rgba(255,255,255,0.08) inset, 0 20px 60px rgba(0,0,0,0.5)",
-                    color: "white",
+                      "0 1px 0 rgba(255,255,255,0.5) inset, 0 20px 50px rgba(20,23,29,0.10)",
+                    color: "#14171d",
                     textDecoration: "none",
                     minHeight: 200,
                   }}
@@ -176,7 +176,7 @@ export function FeaturesSection() {
                       right: "1.5rem",
                       height: 1,
                       background:
-                        "linear-gradient(to right, transparent, rgba(255,255,255,0.18), transparent)",
+                        "linear-gradient(to right, transparent, rgba(20,23,29,0.15), transparent)",
                     }}
                   />
                   <span
@@ -187,7 +187,7 @@ export function FeaturesSection() {
                       fontFamily: "'Barlow', sans-serif",
                       fontWeight: 300,
                       fontSize: "0.75rem",
-                      color: "rgba(255,255,255,0.20)",
+                      color: "rgba(20,23,29,0.25)",
                       letterSpacing: "0.05em",
                     }}
                   >
@@ -200,12 +200,12 @@ export function FeaturesSection() {
                       borderRadius: "0.9rem",
                       marginBottom: "1.25rem",
                       background:
-                        "linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03))",
-                      border: "1px solid rgba(255,255,255,0.12)",
+                        "linear-gradient(135deg, rgba(168,91,53,0.14), rgba(168,91,53,0.05))",
+                      border: "1px solid rgba(168,91,53,0.30)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      color: "rgba(255,255,255,0.80)",
+                      color: "#a85b35",
                     }}
                   >
                     <Icon style={{ width: "1.15rem", height: "1.15rem" }} />
@@ -216,7 +216,7 @@ export function FeaturesSection() {
                       fontWeight: 500,
                       fontStyle: "normal",
                       fontSize: "0.95rem",
-                      color: "white",
+                      color: "#14171d",
                       letterSpacing: "-0.01em",
                       margin: "0 0 0.6rem",
                     }}
@@ -229,7 +229,7 @@ export function FeaturesSection() {
                       fontWeight: 300,
                       fontSize: "0.85rem",
                       lineHeight: 1.55,
-                      color: "rgba(255,255,255,0.50)",
+                      color: "#5b6471",
                       margin: 0,
                     }}
                   >

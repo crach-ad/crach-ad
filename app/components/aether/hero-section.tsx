@@ -16,7 +16,7 @@ export function HeroSection() {
       style={{
         height: "100vh",
         minHeight: 640,
-        background: "black",
+        background: "#f5f1ea",
         overflow: "hidden",
         position: "relative",
       }}
@@ -50,7 +50,7 @@ export function HeroSection() {
             right: 0,
             height: "40%",
             background:
-              "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.20) 28%, transparent 52%)",
+              "linear-gradient(to bottom, #f5f1ea 0%, rgba(245,241,234,0.20) 28%, transparent 52%)",
           }}
         />
 
@@ -67,7 +67,7 @@ export function HeroSection() {
             background:
               "radial-gradient(circle, rgba(255,215,90,0.42) 0%, rgba(255,150,30,0.14) 40%, transparent 70%)",
             filter: "blur(60px)",
-            mixBlendMode: "screen",
+            mixBlendMode: "multiply",
             pointerEvents: "none",
           }}
         />
@@ -83,7 +83,7 @@ export function HeroSection() {
             background:
               "radial-gradient(ellipse, rgba(120,200,255,0.22) 0%, transparent 70%)",
             filter: "blur(55px)",
-            mixBlendMode: "screen",
+            mixBlendMode: "multiply",
             pointerEvents: "none",
           }}
         />
@@ -99,7 +99,7 @@ export function HeroSection() {
             background:
               "radial-gradient(circle, rgba(155,215,100,0.22) 0%, rgba(200,235,80,0.06) 45%, transparent 75%)",
             filter: "blur(65px)",
-            mixBlendMode: "screen",
+            mixBlendMode: "multiply",
             pointerEvents: "none",
           }}
         />
@@ -115,7 +115,7 @@ export function HeroSection() {
             background:
               "radial-gradient(circle, rgba(255,195,100,0.18) 0%, transparent 70%)",
             filter: "blur(55px)",
-            mixBlendMode: "screen",
+            mixBlendMode: "multiply",
             pointerEvents: "none",
           }}
         />
@@ -126,7 +126,7 @@ export function HeroSection() {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse 82% 82% at 50% 50%, transparent 32%, rgba(0,0,0,0.32) 66%, rgba(0,0,0,0.70) 100%)",
+              "radial-gradient(ellipse 82% 82% at 50% 50%, transparent 32%, rgba(245,241,234,0.45) 66%, rgba(245,241,234,0.85) 100%)",
             pointerEvents: "none",
           }}
         />
@@ -135,17 +135,17 @@ export function HeroSection() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "rgba(0,0,0,0.40)",
+            background: "rgba(245,241,234,0.55)",
             pointerEvents: "none",
           }}
         />
-        {/* Dark halo behind title */}
+        {/* Light halo behind title */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse 55% 35% at 50% 40%, rgba(0,0,0,0.48) 0%, transparent 75%)",
+              "radial-gradient(ellipse 60% 42% at 50% 38%, rgba(245,241,234,0.92) 0%, rgba(245,241,234,0.75) 35%, transparent 78%)",
             pointerEvents: "none",
           }}
         />
@@ -185,8 +185,8 @@ export function HeroSection() {
         >
           <span
             style={{
-              background: "white",
-              color: "black",
+              background: "#a85b35",
+              color: "#f5f1ea",
               fontSize: "0.7rem",
               fontWeight: 600,
               padding: "0.1rem 0.45rem",
@@ -198,7 +198,7 @@ export function HeroSection() {
           </span>
           <span
             style={{
-              color: "rgba(255,255,255,0.78)",
+              color: "#2a2f38",
               fontSize: "0.82rem",
               fontFamily: "'Barlow', sans-serif",
               fontWeight: 300,
@@ -223,7 +223,7 @@ export function HeroSection() {
             fontWeight: 300,
             fontSize: "1rem",
             lineHeight: 1.6,
-            color: "rgba(255,255,255,0.70)",
+            color: "#2a2f38",
           }}
         >
           Research, workshops, and tools that bridge STEM education and the
@@ -248,7 +248,7 @@ export function HeroSection() {
             style={{
               borderRadius: 9999,
               padding: "0.85rem 1.75rem",
-              color: "white",
+              color: "#14171d",
               textDecoration: "none",
               fontSize: "0.9rem",
               fontWeight: 500,
@@ -266,7 +266,7 @@ export function HeroSection() {
             style={{
               borderRadius: 9999,
               padding: "0.85rem 1.25rem",
-              color: "rgba(255,255,255,0.7)",
+              color: "#2a2f38",
               textDecoration: "none",
               fontSize: "0.9rem",
               fontWeight: 300,
@@ -291,7 +291,7 @@ export function HeroSection() {
           right: 0,
           height: 360,
           background:
-            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.85) 75%, black 100%)",
+            "linear-gradient(to bottom, transparent 0%, rgba(245,241,234,0.45) 40%, rgba(245,241,234,0.85) 75%, #f5f1ea 100%)",
           zIndex: 5,
           pointerEvents: "none",
         }}

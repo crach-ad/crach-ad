@@ -158,9 +158,43 @@ export default function DinoGamePage() {
 
   useEffect(() => () => engineRef.current?.stop(), [])
 
-  const onCanvasPointer = () => {
+  // Pointer controls: tap / upward swipe = jump, downward swipe (held) = duck.
+  const pointerRef = useRef<{ id: number; startY: number; ducking: boolean } | null>(
+    null,
+  )
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    pointerRef.current = { id: e.pointerId, startY: e.clientY, ducking: false }
+  }
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const p = pointerRef.current
+    if (!p || e.pointerId !== p.id || gameStateRef.current !== "playing") return
+    const dy = e.clientY - p.startY
+    if (dy > 24 && !p.ducking) {
+      p.ducking = true
+      engineRef.current?.setDuck(true)
+    } else if (dy < 8 && p.ducking) {
+      p.ducking = false
+      engineRef.current?.setDuck(false)
+    }
+  }
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const p = pointerRef.current
+    if (!p || e.pointerId !== p.id) return
+    pointerRef.current = null
+    if (p.ducking) {
+      engineRef.current?.setDuck(false)
+      return
+    }
     if (gameStateRef.current === "playing") engineRef.current?.jump()
     else if (!shopOpen) startGame()
+  }
+
+  const handlePointerCancel = () => {
+    if (pointerRef.current?.ducking) engineRef.current?.setDuck(false)
+    pointerRef.current = null
   }
 
   // Shop actions.
@@ -291,7 +325,11 @@ export default function DinoGamePage() {
               ref={canvasRef}
               width={GAME_WIDTH}
               height={GAME_HEIGHT}
-              onPointerDown={onCanvasPointer}
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerUp}
+              onPointerCancel={handlePointerCancel}
+              onPointerLeave={handlePointerCancel}
               className="block h-auto w-full touch-none bg-slate-50"
               style={{ imageRendering: "pixelated" }}
             />
@@ -349,8 +387,8 @@ export default function DinoGamePage() {
                       Start running
                     </Button>
                     <p className="text-xs text-muted-foreground">
-                      Press <Kbd>Space</Kbd> / <Kbd>↑</Kbd> to jump ·{" "}
-                      <Kbd>↓</Kbd> to duck · tap the screen on mobile
+                      <Kbd>Space</Kbd>/<Kbd>↑</Kbd> or tap to jump ·{" "}
+                      <Kbd>↓</Kbd> or swipe down to duck under barriers
                     </p>
                   </>
                 )}

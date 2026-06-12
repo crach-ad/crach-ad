@@ -6,7 +6,7 @@ export function AetherFooter() {
   return (
     <footer
       style={{
-        background: "black",
+        background: "#f5f1ea",
         padding: "0 1.5rem 2.5rem",
       }}
     >
@@ -16,7 +16,7 @@ export function AetherFooter() {
             height: 1,
             width: "100%",
             marginBottom: "2rem",
-            background: "rgba(255,255,255,0.12)",
+            background: "rgba(20,23,29,0.12)",
           }}
         />
         <div
@@ -41,7 +41,7 @@ export function AetherFooter() {
                 fontFamily: "'Instrument Serif', serif",
                 fontStyle: "italic",
                 fontSize: "1.05rem",
-                color: "rgba(255,255,255,0.72)",
+                color: "#2a2f38",
               }}
             >
               crach.ad
@@ -51,7 +51,7 @@ export function AetherFooter() {
                 fontFamily: "'Barlow', sans-serif",
                 fontWeight: 300,
                 fontSize: "0.75rem",
-                color: "rgba(255,255,255,0.38)",
+                color: "#5b6471",
               }}
             >
               © {new Date().getFullYear()} CRACH.AD. All rights reserved.
@@ -77,12 +77,12 @@ export function AetherFooter() {
                 key={l.name}
                 href={l.href}
                 style={{
-                  color: "rgba(255,255,255,0.38)",
+                  color: "#5b6471",
                   textDecoration: "none",
                   transition: "color 0.2s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#a85b35")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#5b6471")}
               >
                 {l.name}
               </Link>

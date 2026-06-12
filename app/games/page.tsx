@@ -27,6 +27,15 @@ const games = [
     available: true,
     accent: "from-emerald-500/20 to-emerald-500/5",
   },
+  {
+    title: "Stick Duel",
+    href: "/stick-fight",
+    description:
+      "Local two-player sword fighting. Two stick figures, one keyboard — land hits to earn gold, then upgrade your blade between rounds. Best of five.",
+    tags: ["2 players", "Local versus", "Sword upgrades"],
+    available: true,
+    accent: "from-rose-500/20 to-rose-500/5",
+  },
 ]
 
 export default function GamesPage() {

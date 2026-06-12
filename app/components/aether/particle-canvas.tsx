@@ -58,8 +58,8 @@ export function ParticleCanvas({ count = 90 }: { count?: number }) {
         const opacity = p.baseOpacity * (0.65 + 0.35 * Math.sin(p.phase))
         const radius = p.r * 2.5
         const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, radius)
-        grad.addColorStop(0, `rgba(255,255,255,${opacity})`)
-        grad.addColorStop(1, "rgba(255,255,255,0)")
+        grad.addColorStop(0, `rgba(20,23,29,${opacity})`)
+        grad.addColorStop(1, "rgba(20,23,29,0)")
         ctx.fillStyle = grad
         ctx.beginPath()
         ctx.arc(p.x, p.y, radius, 0, Math.PI * 2)

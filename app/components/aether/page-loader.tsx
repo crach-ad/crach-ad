@@ -21,7 +21,7 @@ export function PageLoader() {
           style={{
             position: "fixed",
             inset: 0,
-            background: "black",
+            background: "#f5f1ea",
             zIndex: 9999,
             pointerEvents: "none",
           }}

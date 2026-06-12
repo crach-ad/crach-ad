@@ -56,7 +56,7 @@ export function ParticleTitle({ lines }: { lines: [string, string] }) {
 
       const imageData = octx.getImageData(0, 0, w, h).data
       const targets: { x: number; y: number }[] = []
-      const stride = 3
+      const stride = 2
       for (let y = 0; y < h; y += stride) {
         for (let x = 0; x < w; x += stride) {
           const i = (y * w + x) * 4 + 3
@@ -71,7 +71,7 @@ export function ParticleTitle({ lines }: { lines: [string, string] }) {
         ty: t.y,
         vx: 0,
         vy: 0,
-        r: Math.random() * 0.85 + 0.45,
+        r: Math.random() * 1.05 + 0.85,
         opacity: 0,
         phase: Math.random() * Math.PI * 2,
       }))
@@ -111,15 +111,15 @@ export function ParticleTitle({ lines }: { lines: [string, string] }) {
         if (nearFactor > 0) {
           const gr = p.r * 4
           const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, gr)
-          grad.addColorStop(0, `rgba(255,255,255,${0.5 * nearFactor * p.opacity})`)
-          grad.addColorStop(1, "rgba(255,255,255,0)")
+          grad.addColorStop(0, `rgba(20,23,29,${0.5 * nearFactor * p.opacity})`)
+          grad.addColorStop(1, "rgba(20,23,29,0)")
           ctx.fillStyle = grad
           ctx.beginPath()
           ctx.arc(p.x, p.y, gr, 0, Math.PI * 2)
           ctx.fill()
         }
 
-        ctx.fillStyle = `rgba(255,255,255,${p.opacity})`
+        ctx.fillStyle = `rgba(20,23,29,${p.opacity})`
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
         ctx.fill()

@@ -29,7 +29,7 @@ export function IntroSection() {
     <section
       ref={ref}
       style={{
-        background: "black",
+        background: "#f5f1ea",
         padding: "10rem 1.5rem 14rem",
         position: "relative",
         overflow: "hidden",
@@ -54,7 +54,7 @@ export function IntroSection() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, black 0%, transparent 18%, transparent 82%, black 100%)",
+            "linear-gradient(to bottom, #f5f1ea 0%, transparent 18%, transparent 82%, #f5f1ea 100%)",
           zIndex: 1,
           pointerEvents: "none",
         }}
@@ -63,7 +63,7 @@ export function IntroSection() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "rgba(0,0,0,0.45)",
+          background: "rgba(245,241,234,0.55)",
           zIndex: 1,
           pointerEvents: "none",
         }}
@@ -99,7 +99,7 @@ export function IntroSection() {
             fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
             letterSpacing: "-0.04em",
             lineHeight: 0.92,
-            color: "white",
+            color: "#14171d",
             margin: "0 0 1.5rem",
           }}
         >
@@ -117,7 +117,7 @@ export function IntroSection() {
             fontWeight: 300,
             fontSize: "1.05rem",
             lineHeight: 1.6,
-            color: "rgba(255,255,255,0.72)",
+            color: "#2a2f38",
             maxWidth: "34rem",
             margin: "0 auto 4rem",
           }}
@@ -141,7 +141,7 @@ export function IntroSection() {
             fontSize: "0.78rem",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.42)",
+            color: "#5b6471",
           }}
         >
           {PARTNERS.map((p) => (

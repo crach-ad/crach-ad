@@ -22,7 +22,7 @@ export function CTASection() {
     <section
       ref={ref}
       style={{
-        background: "black",
+        background: "#f5f1ea",
         padding: "7rem 1.5rem 10rem",
       }}
     >
@@ -54,7 +54,7 @@ export function CTASection() {
             fontSize: "clamp(2.75rem, 7vw, 4.75rem)",
             letterSpacing: "-0.04em",
             lineHeight: 0.9,
-            color: "white",
+            color: "#14171d",
             margin: "0 0 1.5rem",
           }}
         >
@@ -72,7 +72,7 @@ export function CTASection() {
             fontWeight: 300,
             fontSize: "1.05rem",
             lineHeight: 1.6,
-            color: "rgba(255,255,255,0.70)",
+            color: "#2a2f38",
             maxWidth: "28rem",
             margin: "0 auto 2.5rem",
           }}
@@ -99,7 +99,7 @@ export function CTASection() {
             style={{
               borderRadius: 9999,
               padding: "0.9rem 2rem",
-              color: "white",
+              color: "#14171d",
               textDecoration: "none",
               fontSize: "0.9rem",
               fontWeight: 500,
@@ -118,7 +118,7 @@ export function CTASection() {
             style={{
               borderRadius: 9999,
               padding: "0.9rem 2rem",
-              color: "rgba(255,255,255,0.85)",
+              color: "#2a2f38",
               textDecoration: "none",
               fontSize: "0.9rem",
               fontWeight: 300,

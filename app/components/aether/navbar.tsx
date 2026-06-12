@@ -48,8 +48,8 @@ export function AetherNavbar() {
           display: "flex",
           alignItems: "center",
           boxShadow: scrolled
-            ? "0 10px 40px rgba(0,0,0,0.55), inset 0 1px 1px rgba(255,255,255,0.10)"
-            : "inset 0 1px 1px rgba(255,255,255,0.10)",
+            ? "0 10px 40px rgba(0,0,0,0.18), inset 0 1px 1px rgba(20,23,29,0.08)"
+            : "inset 0 1px 1px rgba(20,23,29,0.08)",
           transition: "box-shadow 0.4s ease",
         }}
       >
@@ -60,7 +60,7 @@ export function AetherNavbar() {
               fontFamily: "'Instrument Serif', serif",
               fontStyle: "italic",
               fontSize: "1.25rem",
-              color: "white",
+              color: "#14171d",
               letterSpacing: "-0.01em",
               textDecoration: "none",
             }}
@@ -81,13 +81,13 @@ export function AetherNavbar() {
                 fontFamily: "'Barlow', sans-serif",
                 fontSize: "0.875rem",
                 fontWeight: 400,
-                color: "rgba(255,255,255,0.75)",
+                color: "#2a2f38",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#a85b35")}
               onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "rgba(255,255,255,0.75)")
+                (e.currentTarget.style.color = "#2a2f38")
               }
             >
               {item.name}
@@ -105,8 +105,8 @@ export function AetherNavbar() {
           <Link
             href="/collaborators"
             style={{
-              background: "white",
-              color: "black",
+              background: "#a85b35",
+              color: "#f5f1ea",
               borderRadius: 9999,
               padding: "0.375rem 1.1rem",
               fontSize: "0.8rem",

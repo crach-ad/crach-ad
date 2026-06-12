@@ -23,7 +23,7 @@ interface Obstacle {
   y: number
   w: number
   h: number
-  kind: "cactus" | "bird"
+  kind: "cactus" | "bird" | "barrier"
   birdFrame?: number
 }
 
@@ -234,14 +234,25 @@ export class DinoEngine {
   private addBird(x: number) {
     const high = Math.random() < 0.5
     const h = 26
-    const y = high ? GROUND_Y - DINO_STAND_H - 4 : GROUND_Y - 30
+    // High bird flies low enough to hit a standing dino but high enough that a
+    // ducking dino slips underneath. Low bird must be jumped.
+    const y = high ? GROUND_Y - DINO_DUCK_H - h - 6 : GROUND_Y - 30
     this.obstacles.push({ x, y, w: 40, h, kind: "bird", birdFrame: 0 })
     return 40
   }
 
+  // Overhead obstacle: hangs from the top down to just above a ducking dino,
+  // so you can ONLY pass by ducking — jumping into it collides.
+  private addBarrier(x: number) {
+    const w = 34
+    const bottom = GROUND_Y - DINO_DUCK_H - 8
+    this.obstacles.push({ x, y: 0, w, h: bottom, kind: "barrier" })
+    return w
+  }
+
   private spawnObstacle() {
     const startX = GAME_WIDTH + 20
-    const w = Math.random() < 0.62 ? this.addCactus(startX) : this.addBird(startX)
+    const w = this.pickObstacle(startX)
 
     // Once you're running far, sometimes chain a second obstacle a reactable
     // gap behind the first — more to dodge the deeper you get.
@@ -249,9 +260,21 @@ export class DinoEngine {
     if (this.distance > 1600 && Math.random() < comboChance) {
       const gap = 210 + Math.random() * 140
       const x2 = startX + w + gap
+      // Combos stick to ground/low obstacles to avoid brutal duck+jump spikes.
       if (Math.random() < 0.55) this.addCactus(x2)
       else this.addBird(x2)
     }
+  }
+
+  private pickObstacle(x: number) {
+    const r = Math.random()
+    // Barriers (duck-required) start appearing after a short warm-up and grow
+    // a little more common with distance.
+    const barrierChance =
+      this.distance > 600 ? Math.min(0.24, 0.08 + this.distance / 12000) : 0
+    if (r < barrierChance) return this.addBarrier(x)
+    if (r < barrierChance + 0.45) return this.addCactus(x)
+    return this.addBird(x)
   }
 
   private dinoBox() {
@@ -426,6 +449,7 @@ export class DinoEngine {
     // Obstacles.
     for (const o of this.obstacles) {
       if (o.kind === "cactus") this.drawCactus(o, night)
+      else if (o.kind === "barrier") this.drawBarrier(o, night)
       else this.drawBird(o)
     }
 
@@ -473,6 +497,30 @@ export class DinoEngine {
     ctx.fillRect(o.x - 6, o.y + o.h * 0.2, 4, o.h * 0.2)
     ctx.fillRect(o.x + o.w, o.y + o.h * 0.45, 6, 4)
     ctx.fillRect(o.x + o.w + 2, o.y + o.h * 0.3, 4, o.h * 0.2)
+  }
+
+  private drawBarrier(o: Obstacle, night: boolean) {
+    const ctx = this.ctx
+    const bottom = o.y + o.h
+    // Hanging rock column covering the full hitbox (fair: nothing invisible).
+    ctx.fillStyle = night ? "#475569" : "#64748b"
+    ctx.fillRect(o.x, o.y, o.w, o.h - 10)
+    // Jagged stalactite bottom edge.
+    ctx.beginPath()
+    ctx.moveTo(o.x, bottom - 10)
+    const teeth = 4
+    const step = o.w / teeth
+    for (let i = 0; i < teeth; i++) {
+      ctx.lineTo(o.x + step * i + step / 2, bottom)
+      ctx.lineTo(o.x + step * (i + 1), bottom - 10)
+    }
+    ctx.lineTo(o.x + o.w, o.y)
+    ctx.lineTo(o.x, o.y)
+    ctx.closePath()
+    ctx.fill()
+    // Hazard stripe on the lower lip so it reads as "duck under".
+    ctx.fillStyle = "#fbbf24"
+    ctx.fillRect(o.x - 2, bottom - 16, o.w + 4, 5)
   }
 
   private drawBird(o: Obstacle) {

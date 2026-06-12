@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
 import { ConditionalHeader } from "./components/conditional-header"
+import { BodyTheme } from "./components/body-theme"
 
 export const metadata: Metadata = {
   title: "CRACH.AD - STEM Education & Development",
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <BodyTheme />
         <ConditionalHeader />
         {children}
       </body>

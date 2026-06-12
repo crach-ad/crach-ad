@@ -46,6 +46,11 @@
     font-family: 'Barlow', sans-serif;
     font-weight: 300;
   }
+  /* Homepage-only "paper" palette (scoped via BodyTheme on pathname "/") */
+  body.paper {
+    background: #d9d3c5; /* outer warm taupe, matches /cv */
+    color: #14171d;      /* ink */
+  }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Instrument Serif', serif;
     font-style: italic;
@@ -55,11 +60,11 @@
 
 /* Liquid glass base */
 .liquid-glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(20, 23, 29, 0.04);
   background-blend-mode: luminosity;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.10);
+  box-shadow: inset 0 1px 1px rgba(20, 23, 29, 0.08);
   position: relative;
   overflow: hidden;
 }
@@ -70,9 +75,9 @@
   border-radius: inherit;
   padding: 1.4px;
   background: linear-gradient(180deg,
-    rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.15) 20%,
-    rgba(255, 255, 255, 0.00) 40%, rgba(255, 255, 255, 0.00) 60%,
-    rgba(255, 255, 255, 0.15) 80%, rgba(255, 255, 255, 0.45) 100%);
+    rgba(20, 23, 29, 0.28) 0%, rgba(20, 23, 29, 0.10) 20%,
+    rgba(20, 23, 29, 0.00) 40%, rgba(20, 23, 29, 0.00) 60%,
+    rgba(20, 23, 29, 0.10) 80%, rgba(20, 23, 29, 0.28) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
@@ -81,11 +86,11 @@
 
 /* Stronger blur glass (primary CTAs) */
 .liquid-glass-strong {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(20, 23, 29, 0.05);
   background-blend-mode: luminosity;
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(20, 23, 29, 0.12);
   position: relative;
   overflow: hidden;
 }
@@ -96,9 +101,9 @@
   border-radius: inherit;
   padding: 1.4px;
   background: linear-gradient(180deg,
-    rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.20) 20%,
-    rgba(255, 255, 255, 0.00) 40%, rgba(255, 255, 255, 0.00) 60%,
-    rgba(255, 255, 255, 0.20) 80%, rgba(255, 255, 255, 0.50) 100%);
+    rgba(20, 23, 29, 0.32) 0%, rgba(20, 23, 29, 0.13) 20%,
+    rgba(20, 23, 29, 0.00) 40%, rgba(20, 23, 29, 0.00) 60%,
+    rgba(20, 23, 29, 0.13) 80%, rgba(20, 23, 29, 0.32) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
@@ -111,12 +116,12 @@
   font-family: 'Barlow', sans-serif;
   font-size: 0.75rem;
   font-weight: 500;
-  color: white;
+  color: #14171d;
   margin-bottom: 1rem;
   padding: 0.25rem 0.875rem;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid #cbc3b3;
+  background: #ece6da;
 }
 
 /* Grain overlay */

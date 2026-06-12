@@ -20,7 +20,7 @@ export function HowItWorksSection() {
     <section
       ref={ref}
       style={{
-        background: "black",
+        background: "#f5f1ea",
         padding: "10rem 1.5rem 14rem",
         position: "relative",
         overflow: "hidden",
@@ -52,7 +52,7 @@ export function HowItWorksSection() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.75) 10%, rgba(0,0,0,0.4) 20%, transparent 38%, transparent 72%, rgba(0,0,0,0.6) 88%, black 100%)",
+            "linear-gradient(to bottom, #f5f1ea 0%, rgba(245,241,234,0.75) 10%, rgba(245,241,234,0.4) 20%, transparent 38%, transparent 72%, rgba(245,241,234,0.6) 88%, #f5f1ea 100%)",
           zIndex: 1,
           pointerEvents: "none",
         }}
@@ -62,7 +62,7 @@ export function HowItWorksSection() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to right, black 0%, transparent 18%, transparent 82%, black 100%)",
+            "linear-gradient(to right, #f5f1ea 0%, transparent 18%, transparent 82%, #f5f1ea 100%)",
           zIndex: 1,
           pointerEvents: "none",
         }}
@@ -71,7 +71,7 @@ export function HowItWorksSection() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "rgba(0,0,0,0.42)",
+          background: "rgba(245,241,234,0.52)",
           zIndex: 1,
           pointerEvents: "none",
         }}
@@ -107,7 +107,7 @@ export function HowItWorksSection() {
             fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
             letterSpacing: "-0.04em",
             lineHeight: 0.92,
-            color: "white",
+            color: "#14171d",
             margin: "0 0 1.5rem",
           }}
         >
@@ -125,7 +125,7 @@ export function HowItWorksSection() {
             fontWeight: 300,
             fontSize: "1.05rem",
             lineHeight: 1.65,
-            color: "rgba(255,255,255,0.72)",
+            color: "#2a2f38",
             maxWidth: "36rem",
             margin: "0 auto",
           }}

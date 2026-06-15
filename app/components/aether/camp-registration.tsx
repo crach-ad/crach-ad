@@ -33,20 +33,8 @@ export const BODY  = "'Barlow', sans-serif"
 
 type Status = { kind: "idle" } | { kind: "err"; msg: string } | { kind: "ok" }
 
-/**
- * Flyer banner — shared by the homepage popup and the standalone register page.
- * `invert` flips it to a light wash with dark ink text, for use on light pages
- * where the default dark-photo/light-text treatment reads as muddy.
- */
-export function CampFlyer({ invert = false }: { invert?: boolean }) {
-  const headingColor = invert ? C.ink : "#fff"
-  const eyebrowColor = invert ? C.sun : "#f3c8b2"
-  const bulletColor  = invert ? C.sun : "#f3a878"
-  const bulletText   = invert ? C.ink2 : "rgba(255,255,255,.92)"
-  const wash = invert
-    ? "linear-gradient(180deg, rgba(245,241,234,.82) 0%, rgba(245,241,234,.80) 55%, rgba(245,241,234,.94) 100%)"
-    : "linear-gradient(180deg, rgba(20,23,29,.20) 0%, rgba(20,23,29,.55) 55%, rgba(20,23,29,.86) 100%)"
-
+/** Flyer banner — shared by the homepage popup and the standalone register page. */
+export function CampFlyer() {
   return (
     <div
       style={{
@@ -56,8 +44,9 @@ export function CampFlyer({ invert = false }: { invert?: boolean }) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-end",
-        color: headingColor,
-        backgroundImage: `${wash}, url('/stem-page/assets/photos/page1-hero.jpeg')`,
+        color: "#fff",
+        backgroundImage:
+          "linear-gradient(180deg, rgba(20,23,29,.20) 0%, rgba(20,23,29,.55) 55%, rgba(20,23,29,.86) 100%), url('/stem-page/assets/photos/page1-hero.jpeg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -69,7 +58,7 @@ export function CampFlyer({ invert = false }: { invert?: boolean }) {
           letterSpacing: ".2em",
           textTransform: "uppercase",
           fontWeight: 600,
-          color: eyebrowColor,
+          color: "#f3c8b2",
           marginBottom: 10,
         }}
       >
@@ -103,10 +92,10 @@ export function CampFlyer({ invert = false }: { invert?: boolean }) {
               display: "flex",
               gap: 8,
               alignItems: "baseline",
-              color: bulletText,
+              color: "rgba(255,255,255,.92)",
             }}
           >
-            <span style={{ color: bulletColor, fontWeight: 700 }}>›</span>
+            <span style={{ color: "#f3a878", fontWeight: 700 }}>›</span>
             {line}
           </li>
         ))}

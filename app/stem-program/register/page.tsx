@@ -49,7 +49,7 @@ export default function CampRegisterPage() {
             border: `1px solid ${C.line}`,
           }}
         >
-          <CampFlyer invert />
+          <CampFlyer />
           <CampRegistrationForm
             successAction={
               <Link

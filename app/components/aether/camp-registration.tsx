@@ -33,8 +33,15 @@ export const BODY  = "'Barlow', sans-serif"
 
 type Status = { kind: "idle" } | { kind: "err"; msg: string } | { kind: "ok" }
 
-/** Flyer banner — shared by the homepage popup and the standalone register page. */
-export function CampFlyer() {
+/**
+ * Flyer banner — shared by the homepage popup and the standalone register page.
+ * `whiteText` forces all flyer copy to pure white (drops the peach accents),
+ * used on the register page for maximum legibility.
+ */
+export function CampFlyer({ whiteText = false }: { whiteText?: boolean }) {
+  const eyebrowColor = whiteText ? "#fff" : "#f3c8b2"
+  const bulletText   = whiteText ? "#fff" : "rgba(255,255,255,.92)"
+  const bulletMarker = whiteText ? "#fff" : "#f3a878"
   return (
     <div
       style={{
@@ -58,7 +65,7 @@ export function CampFlyer() {
           letterSpacing: ".2em",
           textTransform: "uppercase",
           fontWeight: 600,
-          color: "#f3c8b2",
+          color: eyebrowColor,
           marginBottom: 10,
         }}
       >
@@ -92,10 +99,10 @@ export function CampFlyer() {
               display: "flex",
               gap: 8,
               alignItems: "baseline",
-              color: "rgba(255,255,255,.92)",
+              color: bulletText,
             }}
           >
-            <span style={{ color: "#f3a878", fontWeight: 700 }}>›</span>
+            <span style={{ color: bulletMarker, fontWeight: 700 }}>›</span>
             {line}
           </li>
         ))}

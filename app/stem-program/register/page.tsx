@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { CampFlyer, CampRegistrationForm, C, SERIF, BODY } from "@/app/components/aether/camp-registration"
+import { CampFlyer, CampRegistrationForm } from "@/app/components/aether/camp-registration"
+import { C, SERIF, BODY } from "@/app/components/aether/camp-theme"
 
 // Hidden page — not linked in the nav, and kept out of search results.
 export const metadata: Metadata = {

@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
-import { CampFlyer, CampRegistrationForm, C, BODY } from "./camp-registration"
+import { CampFlyer, CampRegistrationForm } from "./camp-registration"
+import { C, BODY } from "./camp-theme"
 
 const DISMISS_KEY = "campPopupDismissed"
 

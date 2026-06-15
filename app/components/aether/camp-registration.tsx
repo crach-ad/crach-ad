@@ -1,13 +1,12 @@
 "use client"
 
 import { useState } from "react"
+import { C, SERIF, BODY, PRICE_PER_WEEK } from "./camp-theme"
 
 const SUPABASE_URL = "https://wizfmnaxmbrcrrdrihpb.supabase.co"
 // Public anon key — RLS-safe by design (writes go through SECURITY DEFINER RPC).
 const SUPABASE_ANON =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndpemZtbmF4bWJyY3JyZHJpaHBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE2NzI2MTIsImV4cCI6MjA4NzI0ODYxMn0.liSgurL19uR_x1n3dVg_eUWq7QeCnS--IRUpPOXfQBU"
-
-export const PRICE_PER_WEEK = 400
 
 // Six Mon–Thu build weeks, Jun 29 – Aug 7, 2026.
 const WEEKS = [
@@ -18,18 +17,6 @@ const WEEKS = [
   { value: "w5", label: "Week 5", dates: "Jul 27 – Jul 30" },
   { value: "w6", label: "Week 6", dates: "Aug 3 – Aug 6" },
 ] as const
-
-export const C = {
-  paper: "#f5f1ea",
-  ink:   "#14171d",
-  ink2:  "rgba(20,23,29,.70)",
-  ink3:  "rgba(20,23,29,.42)",
-  sun:   "#d8632a", // warm summer terracotta accent
-  line:  "rgba(20,23,29,.14)",
-}
-
-export const SERIF = "'Instrument Serif', serif"
-export const BODY  = "'Barlow', sans-serif"
 
 type Status = { kind: "idle" } | { kind: "err"; msg: string } | { kind: "ok" }
 

@@ -235,3 +235,13 @@ article .prose blockquote {
   .font-heading { font-family: 'Instrument Serif', serif; }
   .font-body { font-family: 'Barlow', sans-serif; }
 }
+
+/* Camp registration card — flyer + form side by side, stacks on small screens.
+   Shared by the homepage popup (summer-camp-popup) and /stem-program/register. */
+.camp-card-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+}
+@media (max-width: 720px) {
+  .camp-card-grid { grid-template-columns: 1fr; }
+}

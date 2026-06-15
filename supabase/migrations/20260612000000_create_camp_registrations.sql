@@ -17,6 +17,7 @@ create table public.camp_registrations (
   student_grade     text not null,
   weeks             text[] not null,
   coding_experience text not null,
+  status            text not null default 'new',
   notes             text,
   heard_from        text,
 
@@ -29,11 +30,16 @@ create table public.camp_registrations (
   constraint camp_weeks_values
     check (weeks <@ array['w1','w2','w3','w4','w5','w6']),
   constraint camp_coding_experience_values
-    check (coding_experience in ('none', 'some', 'lots'))
+    check (coding_experience in ('none', 'some', 'lots')),
+  constraint camp_status_values
+    check (status in ('new', 'contacted', 'confirmed', 'paid', 'cancelled'))
 );
 
 create index camp_registrations_created_at_idx
   on public.camp_registrations (created_at desc);
+
+create index camp_registrations_status_idx
+  on public.camp_registrations (status);
 
 alter table public.camp_registrations enable row level security;
 -- (No anon-facing policies. Writes go through the RPC below.)

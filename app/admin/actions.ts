@@ -39,7 +39,7 @@ export async function logout() {
 export async function updateStatus(id: string, status: string) {
   if (!(await isAuthed())) throw new Error("Unauthorized")
   if (!STATUSES.includes(status as Status)) throw new Error("Invalid status")
-  const res = await sbFetch(`camp_registrations?id=eq.${encodeURIComponent(id)}`, {
+  const res = await sbFetch(`ai_session_registrations?id=eq.${encodeURIComponent(id)}`, {
     method: "PATCH",
     headers: { Prefer: "return=minimal" },
     body: JSON.stringify({ status }),
@@ -50,7 +50,7 @@ export async function updateStatus(id: string, status: string) {
 
 export async function deleteRegistration(id: string) {
   if (!(await isAuthed())) throw new Error("Unauthorized")
-  const res = await sbFetch(`camp_registrations?id=eq.${encodeURIComponent(id)}`, {
+  const res = await sbFetch(`ai_session_registrations?id=eq.${encodeURIComponent(id)}`, {
     method: "DELETE",
     headers: { Prefer: "return=minimal" },
   })

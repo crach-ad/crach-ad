@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation"
-import { isAuthed, serviceKey, fetchRegistrations, type CampRow } from "./lib"
+import { isAuthed, serviceKey, fetchRegistrations, type AiRow } from "./lib"
 import { Dashboard } from "./dashboard"
 
 export const dynamic = "force-dynamic"
@@ -13,7 +13,7 @@ export default async function AdminPage() {
     )
   }
 
-  let rows: CampRow[] = []
+  let rows: AiRow[] = []
   let error: string | null = null
   try {
     rows = await fetchRegistrations()

@@ -8,31 +8,37 @@ import { updateStatus, deleteRegistration, logout } from "./actions"
 const STATUSES = ["new", "contacted", "confirmed", "paid", "cancelled"] as const
 type Status = (typeof STATUSES)[number]
 
-const WEEK_META: Record<string, { label: string; dates: string }> = {
-  w1: { label: "Wk 1", dates: "Jun 29 – Jul 2" },
-  w2: { label: "Wk 2", dates: "Jul 6 – Jul 9" },
-  w3: { label: "Wk 3", dates: "Jul 13 – Jul 16" },
-  w4: { label: "Wk 4", dates: "Jul 20 – Jul 23" },
-  w5: { label: "Wk 5", dates: "Jul 27 – Jul 30" },
-  w6: { label: "Wk 6", dates: "Aug 3 – Aug 6" },
+const DAYS = ["mon", "tue", "wed", "thu", "fri"] as const
+const DAY_LABEL: Record<string, string> = {
+  mon: "Mon", tue: "Tue", wed: "Wed", thu: "Thu", fri: "Fri",
 }
-const PRICE_PER_WEEK = 400
+const PRICE_PER_SESSION = 70
 
-type CampRow = {
+const TRACK_LABEL: Record<string, string> = {
+  business: "Business", professional: "Professional", everyday: "Everyday",
+}
+const FORMAT_LABEL: Record<string, string> = {
+  in_person: "In person", online: "Online",
+}
+const SLOT_LABEL: Record<string, string> = {
+  early: "5:00–6:30", late: "6:30–8:00", either: "Either",
+}
+const EXP_LABEL: Record<string, string> = { none: "New to it", some: "Some", lots: "Lots" }
+
+type AiRow = {
   id: string
   created_at: string
-  guardian_name: string
+  full_name: string
   email: string
   phone: string
-  student_name: string
-  student_age: number
-  student_school: string
-  student_grade: string
-  weeks: string[]
-  coding_experience: string
-  status: Status
-  notes: string | null
+  track: string
+  ai_experience: string
+  format: string
+  time_slot: string
+  days: string[]
+  goals: string | null
   heard_from: string | null
+  status: Status
 }
 
 const C = {
@@ -55,38 +61,42 @@ const STATUS_COLOR: Record<Status, { bg: string; fg: string }> = {
   cancelled: { bg: "#eee9e3", fg: "#8a8278" },
 }
 
-const EXP_LABEL: Record<string, string> = { none: "New to it", some: "Some", lots: "Lots" }
+function sortDays(days: string[]): string[] {
+  return (days || []).slice().sort((a, b) => DAYS.indexOf(a as any) - DAYS.indexOf(b as any))
+}
 
-export function Dashboard({ rows: initial, error }: { rows: CampRow[]; error: string | null }) {
-  const [rows, setRows] = useState<CampRow[]>(initial)
+export function Dashboard({ rows: initial, error }: { rows: AiRow[]; error: string | null }) {
+  const [rows, setRows] = useState<AiRow[]>(initial)
   const [query, setQuery] = useState("")
   const [statusFilter, setStatusFilter] = useState<"all" | Status>("all")
-  const [weekFilter, setWeekFilter] = useState<"all" | string>("all")
+  const [trackFilter, setTrackFilter] = useState<"all" | string>("all")
+  const [dayFilter, setDayFilter] = useState<"all" | string>("all")
   const [, startTransition] = useTransition()
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
     return rows.filter((r) => {
       if (statusFilter !== "all" && r.status !== statusFilter) return false
-      if (weekFilter !== "all" && !r.weeks?.includes(weekFilter)) return false
+      if (trackFilter !== "all" && r.track !== trackFilter) return false
+      if (dayFilter !== "all" && !r.days?.includes(dayFilter)) return false
       if (!q) return true
-      return [r.guardian_name, r.email, r.student_name, r.student_school, r.phone]
+      return [r.full_name, r.email, r.phone]
         .some((f) => (f || "").toLowerCase().includes(q))
     })
-  }, [rows, query, statusFilter, weekFilter])
+  }, [rows, query, statusFilter, trackFilter, dayFilter])
 
   const stats = useMemo(() => {
     const byStatus = Object.fromEntries(STATUSES.map((s) => [s, 0])) as Record<Status, number>
-    let seatWeeks = 0
+    let daySessions = 0
     let revenue = 0
     for (const r of rows) {
       byStatus[r.status] = (byStatus[r.status] || 0) + 1
       if (r.status !== "cancelled") {
-        seatWeeks += r.weeks?.length || 0
-        revenue += (r.weeks?.length || 0) * PRICE_PER_WEEK
+        daySessions += r.days?.length || 0
+        revenue += (r.days?.length || 0) * PRICE_PER_SESSION
       }
     }
-    return { total: rows.length, byStatus, seatWeeks, revenue }
+    return { total: rows.length, byStatus, daySessions, revenue }
   }, [rows])
 
   function onStatus(id: string, next: Status) {
@@ -118,9 +128,9 @@ export function Dashboard({ rows: initial, error }: { rows: CampRow[]; error: st
 
   function exportCsv() {
     const cols = [
-      "created", "status", "guardian_name", "email", "phone",
-      "student_name", "student_age", "student_school", "student_grade",
-      "weeks", "weeks_count", "amount", "coding_experience", "notes", "heard_from",
+      "created", "status", "full_name", "email", "phone",
+      "track", "ai_experience", "format", "time_slot",
+      "days", "days_count", "amount", "goals", "heard_from",
     ]
     const esc = (v: unknown) => {
       const s = String(v ?? "")
@@ -128,20 +138,20 @@ export function Dashboard({ rows: initial, error }: { rows: CampRow[]; error: st
     }
     const lines = [cols.join(",")]
     for (const r of filtered) {
-      const n = r.weeks?.length || 0
+      const n = r.days?.length || 0
       lines.push([
-        r.created_at?.slice(0, 10), r.status, r.guardian_name, r.email, r.phone,
-        r.student_name, r.student_age, r.student_school, r.student_grade,
-        (r.weeks || []).map((w) => WEEK_META[w]?.label || w).join(" / "),
-        n, n * PRICE_PER_WEEK, EXP_LABEL[r.coding_experience] || r.coding_experience,
-        r.notes || "", r.heard_from || "",
+        r.created_at?.slice(0, 10), r.status, r.full_name, r.email, r.phone,
+        TRACK_LABEL[r.track] || r.track, EXP_LABEL[r.ai_experience] || r.ai_experience,
+        FORMAT_LABEL[r.format] || r.format, SLOT_LABEL[r.time_slot] || r.time_slot,
+        sortDays(r.days).map((d) => DAY_LABEL[d] || d).join(" / "),
+        n, n * PRICE_PER_SESSION, r.goals || "", r.heard_from || "",
       ].map(esc).join(","))
     }
     const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" })
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
-    a.download = `camp-signups-${filtered.length}.csv`
+    a.download = `ai-sessions-${filtered.length}.csv`
     a.click()
     URL.revokeObjectURL(url)
   }
@@ -153,10 +163,10 @@ export function Dashboard({ rows: initial, error }: { rows: CampRow[]; error: st
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 16, flexWrap: "wrap", marginBottom: 22 }}>
           <div>
             <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: C.sun, fontWeight: 600, marginBottom: 4 }}>
-              CRACH.AD · STEM Summer Camp
+              CRACHAD · AI Sessions
             </div>
             <h1 style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "2.6rem", lineHeight: 0.95, letterSpacing: "-0.02em", margin: 0 }}>
-              Camp sign-ups
+              Session bookings
             </h1>
           </div>
           <form action={logout}>
@@ -168,9 +178,9 @@ export function Dashboard({ rows: initial, error }: { rows: CampRow[]; error: st
 
         {/* Stats */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 12, marginBottom: 22 }}>
-          <Stat label="Total sign-ups" value={String(stats.total)} />
+          <Stat label="Total bookings" value={String(stats.total)} />
           <Stat label="Confirmed + Paid" value={String(stats.byStatus.confirmed + stats.byStatus.paid)} />
-          <Stat label="Seat-weeks booked" value={String(stats.seatWeeks)} />
+          <Stat label="Day-sessions / week" value={String(stats.daySessions)} />
           <Stat label="Projected revenue" value={`$${stats.revenue.toLocaleString()}`} accent />
         </div>
 
@@ -181,7 +191,7 @@ export function Dashboard({ rows: initial, error }: { rows: CampRow[]; error: st
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search name, email, school…"
+              placeholder="Search name, email, phone…"
               style={{ ...inputBase, paddingLeft: 34, width: "100%" }}
             />
           </div>
@@ -191,10 +201,16 @@ export function Dashboard({ rows: initial, error }: { rows: CampRow[]; error: st
               <option key={s} value={s}>{cap(s)} ({stats.byStatus[s]})</option>
             ))}
           </select>
-          <select value={weekFilter} onChange={(e) => setWeekFilter(e.target.value)} style={inputBase}>
-            <option value="all">All weeks</option>
-            {Object.entries(WEEK_META).map(([k, m]) => (
-              <option key={k} value={k}>{m.label} · {m.dates}</option>
+          <select value={trackFilter} onChange={(e) => setTrackFilter(e.target.value)} style={inputBase}>
+            <option value="all">All tracks</option>
+            {Object.entries(TRACK_LABEL).map(([k, label]) => (
+              <option key={k} value={k}>{label}</option>
+            ))}
+          </select>
+          <select value={dayFilter} onChange={(e) => setDayFilter(e.target.value)} style={inputBase}>
+            <option value="all">All days</option>
+            {DAYS.map((d) => (
+              <option key={d} value={d}>{DAY_LABEL[d]}</option>
             ))}
           </select>
           <button onClick={exportCsv} disabled={filtered.length === 0} style={{ ...ghostBtn, opacity: filtered.length === 0 ? 0.5 : 1 }}>
@@ -214,10 +230,10 @@ export function Dashboard({ rows: initial, error }: { rows: CampRow[]; error: st
 
         {/* Table */}
         <div style={{ overflowX: "auto", border: `1px solid ${C.line}`, borderRadius: 10, background: C.card }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13.5, minWidth: 920 }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13.5, minWidth: 960 }}>
             <thead>
               <tr style={{ textAlign: "left", color: C.ink2 }}>
-                {["Received", "Student", "Guardian / contact", "Weeks", "Exp.", "Status", ""].map((h, i) => (
+                {["Received", "Person", "Track / format", "Slot", "Days", "Exp.", "Status", ""].map((h, i) => (
                   <th key={i} style={th}>{h}</th>
                 ))}
               </tr>
@@ -225,8 +241,8 @@ export function Dashboard({ rows: initial, error }: { rows: CampRow[]; error: st
             <tbody>
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={7} style={{ padding: "40px 16px", textAlign: "center", color: C.ink3 }}>
-                    {rows.length === 0 ? "No sign-ups yet." : "No sign-ups match your filters."}
+                  <td colSpan={8} style={{ padding: "40px 16px", textAlign: "center", color: C.ink3 }}>
+                    {rows.length === 0 ? "No bookings yet." : "No bookings match your filters."}
                   </td>
                 </tr>
               ) : (
@@ -236,31 +252,30 @@ export function Dashboard({ rows: initial, error }: { rows: CampRow[]; error: st
                       <span style={{ color: C.ink2 }}>{r.created_at?.slice(0, 10)}</span>
                     </td>
                     <td style={td}>
-                      <div style={{ fontWeight: 600 }}>{r.student_name}</div>
-                      <div style={{ color: C.ink2, fontSize: 12.5 }}>
-                        Age {r.student_age} · {r.student_grade}
-                      </div>
-                      <div style={{ color: C.ink3, fontSize: 12 }}>{r.student_school}</div>
-                    </td>
-                    <td style={td}>
-                      <div>{r.guardian_name}</div>
+                      <div style={{ fontWeight: 600 }}>{r.full_name}</div>
                       <div style={{ fontSize: 12.5 }}>
                         <a href={`mailto:${r.email}`} style={{ color: C.sun, textDecoration: "none" }}>{r.email}</a>
                       </div>
                       <div style={{ color: C.ink2, fontSize: 12.5 }}>{r.phone}</div>
-                      {r.notes && <div style={{ color: C.ink3, fontSize: 11.5, marginTop: 4, fontStyle: "italic" }}>“{r.notes}”</div>}
+                      {r.goals && <div style={{ color: C.ink3, fontSize: 11.5, marginTop: 4, fontStyle: "italic" }}>“{r.goals}”</div>}
+                      {r.heard_from && <div style={{ color: C.ink3, fontSize: 11.5, marginTop: 2 }}>via {r.heard_from}</div>}
                     </td>
                     <td style={td}>
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: 4, maxWidth: 150 }}>
-                        {(r.weeks || []).slice().sort().map((w) => (
-                          <span key={w} title={WEEK_META[w]?.dates} style={weekBadge}>{WEEK_META[w]?.label || w}</span>
+                      <div style={{ fontWeight: 600 }}>{TRACK_LABEL[r.track] || r.track}</div>
+                      <div style={{ color: C.ink2, fontSize: 12.5 }}>{FORMAT_LABEL[r.format] || r.format}</div>
+                    </td>
+                    <td style={{ ...td, color: C.ink2, whiteSpace: "nowrap" }}>{SLOT_LABEL[r.time_slot] || r.time_slot}</td>
+                    <td style={td}>
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: 4, maxWidth: 140 }}>
+                        {sortDays(r.days).map((d) => (
+                          <span key={d} style={dayBadge}>{DAY_LABEL[d] || d}</span>
                         ))}
                       </div>
                       <div style={{ color: C.ink3, fontSize: 11.5, marginTop: 3 }}>
-                        ${((r.weeks?.length || 0) * PRICE_PER_WEEK).toLocaleString()}
+                        ${((r.days?.length || 0) * PRICE_PER_SESSION).toLocaleString()} / wk
                       </div>
                     </td>
-                    <td style={{ ...td, color: C.ink2 }}>{EXP_LABEL[r.coding_experience] || r.coding_experience}</td>
+                    <td style={{ ...td, color: C.ink2 }}>{EXP_LABEL[r.ai_experience] || r.ai_experience}</td>
                     <td style={td}>
                       <select
                         value={r.status}
@@ -285,8 +300,8 @@ export function Dashboard({ rows: initial, error }: { rows: CampRow[]; error: st
                     </td>
                     <td style={{ ...td, textAlign: "right" }}>
                       <button
-                        onClick={() => onDelete(r.id, r.student_name)}
-                        aria-label="Delete sign-up"
+                        onClick={() => onDelete(r.id, r.full_name)}
+                        aria-label="Delete booking"
                         style={{ border: "none", background: "none", cursor: "pointer", color: C.ink3, padding: 4 }}
                       >
                         <Trash2 style={{ width: 16, height: 16 }} />
@@ -348,7 +363,7 @@ const th: React.CSSProperties = {
 }
 const td: React.CSSProperties = { padding: "12px 14px", lineHeight: 1.4 }
 
-const weekBadge: React.CSSProperties = {
+const dayBadge: React.CSSProperties = {
   background: "#ece6dc",
   color: "#5a5347",
   borderRadius: 5,

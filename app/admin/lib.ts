@@ -10,31 +10,29 @@ export const SESSION_COOKIE = "crachad_admin"
 export const STATUSES = ["new", "contacted", "confirmed", "paid", "cancelled"] as const
 export type Status = (typeof STATUSES)[number]
 
-export const WEEK_META: Record<string, { label: string; dates: string }> = {
-  w1: { label: "Wk 1", dates: "Jun 29 – Jul 2" },
-  w2: { label: "Wk 2", dates: "Jul 6 – Jul 9" },
-  w3: { label: "Wk 3", dates: "Jul 13 – Jul 16" },
-  w4: { label: "Wk 4", dates: "Jul 20 – Jul 23" },
-  w5: { label: "Wk 5", dates: "Jul 27 – Jul 30" },
-  w6: { label: "Wk 6", dates: "Aug 3 – Aug 6" },
+export const DAY_META: Record<string, { label: string }> = {
+  mon: { label: "Mon" },
+  tue: { label: "Tue" },
+  wed: { label: "Wed" },
+  thu: { label: "Thu" },
+  fri: { label: "Fri" },
 }
-export const PRICE_PER_WEEK = 400
+export const PRICE_PER_SESSION = 70
 
-export type CampRow = {
+export type AiRow = {
   id: string
   created_at: string
-  guardian_name: string
+  full_name: string
   email: string
   phone: string
-  student_name: string
-  student_age: number
-  student_school: string
-  student_grade: string
-  weeks: string[]
-  coding_experience: string
-  status: Status
-  notes: string | null
+  track: string
+  ai_experience: string
+  format: string
+  time_slot: string
+  days: string[]
+  goals: string | null
   heard_from: string | null
+  status: Status
 }
 
 export function adminPassword() {
@@ -72,8 +70,8 @@ export async function sbFetch(path: string, init?: RequestInit) {
   })
 }
 
-export async function fetchRegistrations(): Promise<CampRow[]> {
-  const res = await sbFetch("camp_registrations?select=*&order=created_at.desc")
+export async function fetchRegistrations(): Promise<AiRow[]> {
+  const res = await sbFetch("ai_session_registrations?select=*&order=created_at.desc")
   if (!res.ok) {
     const body = await res.text().catch(() => "")
     throw new Error(`Load failed (HTTP ${res.status})${body ? ` — ${body.slice(0, 180)}` : ""}`)

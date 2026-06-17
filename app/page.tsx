@@ -6,14 +6,14 @@ import { HowItWorksSection } from "./components/aether/how-it-works-section"
 import { FeaturesSection } from "./components/aether/features-section"
 import { CTASection } from "./components/aether/cta-section"
 import { AetherFooter } from "./components/aether/footer"
-import { SummerCampPopup } from "./components/aether/summer-camp-popup"
+import { AiSessionPopup } from "./components/aether/ai-session-popup"
 
 export default function Home() {
   return (
     <>
       <div className="grain-overlay" />
       <PageLoader />
-      <SummerCampPopup />
+      <AiSessionPopup />
       <AetherNavbar />
       <main>
         <HeroSection />

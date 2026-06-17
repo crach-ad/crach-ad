@@ -1,23 +1,26 @@
 "use client"
 
 import { useState } from "react"
-import { C, SERIF, BODY, PRICE_PER_WEEK } from "./camp-theme"
+import { C, SERIF, BODY, PRICE_PER_SESSION } from "./ai-theme"
 
 const SUPABASE_URL = "https://wizfmnaxmbrcrrdrihpb.supabase.co"
 // Public anon key — RLS-safe by design (writes go through SECURITY DEFINER RPC).
 const SUPABASE_ANON =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndpemZtbmF4bWJyY3JyZHJpaHBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE2NzI2MTIsImV4cCI6MjA4NzI0ODYxMn0.liSgurL19uR_x1n3dVg_eUWq7QeCnS--IRUpPOXfQBU"
 
-// Six Mon–Thu build weeks, Jun 29 – Aug 7, 2026.
-const WEEKS = [
-  { value: "w1", label: "Week 1", dates: "Jun 29 – Jul 2" },
-  { value: "w2", label: "Week 2", dates: "Jul 6 – Jul 9" },
-  { value: "w3", label: "Week 3", dates: "Jul 13 – Jul 16" },
-  { value: "w4", label: "Week 4", dates: "Jul 20 – Jul 23" },
-  { value: "w5", label: "Week 5", dates: "Jul 27 – Jul 30" },
-  { value: "w6", label: "Week 6", dates: "Aug 3 – Aug 6" },
+// Mon–Fri weekday picker (sessions run every weekday, 5–8 pm).
+const DAYS = [
+  { value: "mon", label: "Mon" },
+  { value: "tue", label: "Tue" },
+  { value: "wed", label: "Wed" },
+  { value: "thu", label: "Thu" },
+  { value: "fri", label: "Fri" },
 ] as const
 
+type Track  = "business" | "professional" | "everyday"
+type Exp    = "none" | "some" | "lots"
+type Format = "in_person" | "online"
+type Slot   = "early" | "late" | "either"
 type Status = { kind: "idle" } | { kind: "err"; msg: string } | { kind: "ok" }
 
 /**
@@ -25,7 +28,7 @@ type Status = { kind: "idle" } | { kind: "err"; msg: string } | { kind: "ok" }
  * `whiteText` forces all flyer copy to pure white (drops the peach accents),
  * used on the register page for maximum legibility.
  */
-export function CampFlyer({ whiteText = false }: { whiteText?: boolean }) {
+export function AiFlyer({ whiteText = false }: { whiteText?: boolean }) {
   const eyebrowColor = whiteText ? "#fff" : "#f3c8b2"
   const bulletText   = whiteText ? "#fff" : "rgba(255,255,255,.92)"
   const bulletMarker = whiteText ? "#fff" : "#f3a878"
@@ -37,14 +40,18 @@ export function CampFlyer({ whiteText = false }: { whiteText?: boolean }) {
         padding: "32px 28px",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "flex-end",
+        justifyContent: "flex-start",
         color: "#fff",
         backgroundImage:
-          "linear-gradient(180deg, rgba(20,23,29,.20) 0%, rgba(20,23,29,.55) 55%, rgba(20,23,29,.86) 100%), url('/stem-page/assets/photos/page1-hero.jpeg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+          "radial-gradient(120% 100% at 80% 0%, rgba(216,99,42,.55) 0%, rgba(216,99,42,0) 55%), linear-gradient(160deg, #1d2330 0%, #14171d 60%, #0c0e13 100%)",
       }}
     >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/human-in-the-loop.png"
+        alt="Human in the Loop — AI training for professionals"
+        style={{ width: "min(280px, 70%)", height: "auto", margin: "0 auto 20px", display: "block" }}
+      />
       <div
         style={{
           fontFamily: BODY,
@@ -56,7 +63,7 @@ export function CampFlyer({ whiteText = false }: { whiteText?: boolean }) {
           marginBottom: 10,
         }}
       >
-        CRACH.AD · Summer 2026
+        CRACHAD · AI Sessions
       </div>
       <h3
         style={{
@@ -65,17 +72,30 @@ export function CampFlyer({ whiteText = false }: { whiteText?: boolean }) {
           fontSize: "clamp(2rem, 4.4vw, 2.9rem)",
           lineHeight: 0.95,
           letterSpacing: "-0.02em",
+          margin: "0 0 8px",
+        }}
+      >
+        AI Sessions<br />with CRACHAD
+      </h3>
+      <p
+        style={{
+          fontFamily: BODY,
+          fontSize: 13,
+          fontWeight: 600,
+          letterSpacing: ".02em",
+          color: bulletText,
           margin: "0 0 14px",
         }}
       >
-        STEM Skill<br />Development Camp
-      </h3>
+        Learn Today. Apply Tomorrow. Lead the Future.
+      </p>
       <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 6 }}>
         {[
-          "Ages 12–17 · hands-on build cohort",
-          "Jun 29 – Aug 7 · Mon–Thu, 9 am – 1 pm",
-          "Coding · CAD · electronics · robotics · AI",
-          "$400 / week · portfolio-ready projects",
+          "All ages · business, professionals & everyday life",
+          "Mon–Fri, 5–8 pm · Meridian STEM Lab",
+          "Two slots: 5:00–6:30 or 6:30–8:00 · $70 / session",
+          "In person or online · small groups",
+          "Device use + AI usage costs included",
         ].map((line) => (
           <li
             key={line}
@@ -99,11 +119,11 @@ export function CampFlyer({ whiteText = false }: { whiteText?: boolean }) {
 }
 
 /**
- * The registration form itself (heading, fields, week picker, submit) plus the
+ * The registration form itself (heading, fields, scheduler, submit) plus the
  * post-submit success state. `onSubmitted` fires after a successful POST;
  * `successAction` is rendered as the call-to-action on the success panel.
  */
-export function CampRegistrationForm({
+export function AiRegistrationForm({
   onSubmitted,
   successAction,
 }: {
@@ -112,18 +132,21 @@ export function CampRegistrationForm({
 }) {
   const [submitting, setSubmitting] = useState(false)
   const [status, setStatus] = useState<Status>({ kind: "idle" })
-  const [exp, setExp] = useState<"none" | "some" | "lots">("some")
-  const [weeks, setWeeks] = useState<string[]>([])
-  const [errs, setErrs] = useState<Record<string, boolean>>({})
+  const [track, setTrack]   = useState<Track>("business")
+  const [exp, setExp]       = useState<Exp>("some")
+  const [format, setFormat] = useState<Format>("in_person")
+  const [slot, setSlot]     = useState<Slot>("either")
+  const [days, setDays]     = useState<string[]>([])
+  const [errs, setErrs]     = useState<Record<string, boolean>>({})
 
-  function toggleWeek(value: string) {
-    setWeeks((prev) =>
-      prev.includes(value) ? prev.filter((w) => w !== value) : [...prev, value],
+  function toggleDay(value: string) {
+    setDays((prev) =>
+      prev.includes(value) ? prev.filter((d) => d !== value) : [...prev, value],
     )
   }
-  const allSelected = weeks.length === WEEKS.length
+  const allSelected = days.length === DAYS.length
   function toggleAll() {
-    setWeeks(allSelected ? [] : WEEKS.map((w) => w.value))
+    setDays(allSelected ? [] : DAYS.map((d) => d.value))
   }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -134,27 +157,21 @@ export function CampRegistrationForm({
     const v = (k: string) => String(fd.get(k) || "").trim()
 
     const fields = {
-      guardian_name:  v("guardian_name"),
-      email:          v("email"),
-      phone:          v("phone"),
-      student_name:   v("student_name"),
-      student_age:    v("student_age"),
-      student_school: v("student_school"),
-      student_grade:  v("student_grade"),
+      full_name: v("full_name"),
+      email:     v("email"),
+      phone:     v("phone"),
     }
 
     const nextErrs: Record<string, boolean> = {}
     for (const [k, val] of Object.entries(fields)) if (!val) nextErrs[k] = true
     if (fields.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) nextErrs.email = true
-    const ageNum = Number(fields.student_age)
-    if (fields.student_age && (!Number.isFinite(ageNum) || ageNum < 5 || ageNum > 19)) nextErrs.student_age = true
-    if (weeks.length === 0) nextErrs.weeks = true
+    if (days.length === 0) nextErrs.days = true
     setErrs(nextErrs)
     if (Object.keys(nextErrs).length > 0) {
       setStatus({
         kind: "err",
-        msg: weeks.length === 0 && Object.keys(nextErrs).length === 1
-          ? "Please pick at least one week."
+        msg: days.length === 0 && Object.keys(nextErrs).length === 1
+          ? "Please pick at least one weekday."
           : "Please complete the required fields.",
       })
       return
@@ -162,7 +179,7 @@ export function CampRegistrationForm({
 
     setSubmitting(true)
     try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/submit_camp_registration`, {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/submit_ai_session_registration`, {
         method: "POST",
         headers: {
           apikey:         SUPABASE_ANON,
@@ -170,17 +187,16 @@ export function CampRegistrationForm({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          p_guardian_name:     fields.guardian_name,
-          p_email:             fields.email,
-          p_phone:             fields.phone,
-          p_student_name:      fields.student_name,
-          p_student_age:       ageNum,
-          p_student_school:    fields.student_school,
-          p_student_grade:     fields.student_grade,
-          p_weeks:             weeks.slice().sort(),
-          p_coding_experience: exp,
-          p_notes:             v("notes")      || null,
-          p_heard_from:        v("heard_from") || null,
+          p_full_name:     fields.full_name,
+          p_email:         fields.email,
+          p_phone:         fields.phone,
+          p_track:         track,
+          p_ai_experience: exp,
+          p_format:        format,
+          p_time_slot:     slot,
+          p_days:          DAYS.map((d) => d.value).filter((d) => days.includes(d)),
+          p_goals:         v("goals")      || null,
+          p_heard_from:    v("heard_from") || null,
         }),
       })
       const body = await res.json().catch(() => ({} as any))
@@ -216,7 +232,7 @@ export function CampRegistrationForm({
           marginBottom: 8,
         }}
       >
-        Cohort 01 · Now Enrolling
+        Now Booking · $70 / session
       </div>
       <h2
         style={{
@@ -229,38 +245,28 @@ export function CampRegistrationForm({
           color: C.ink,
         }}
       >
-        Reserve your<br />student's seat.
+        Book your<br />AI session.
       </h2>
-      <p style={{ fontSize: 14.5, lineHeight: 1.5, color: C.ink2, margin: "0 0 20px" }}>
-        Tell us who's joining — we'll follow up within 48 hours with payment
-        options and onboarding.
-      </p>
-
       <form onSubmit={onSubmit} noValidate style={{ display: "grid", gap: 14 }}>
-        <Field label="Parent / guardian name" name="guardian_name" required err={errs.guardian_name} autoComplete="name" />
+        <Field label="Full name" name="full_name" required err={errs.full_name} autoComplete="name" />
         <Row>
           <Field label="Email" name="email" required err={errs.email} type="email" autoComplete="email" />
-          <Field label="Phone" name="phone" required err={errs.phone} type="tel" autoComplete="tel" />
-        </Row>
-        <Row>
-          <Field label="Student name" name="student_name" required err={errs.student_name} />
-          <Field label="Student age" name="student_age" required err={errs.student_age} type="number" inputMode="numeric" placeholder="12–17" />
-        </Row>
-        <Row>
-          <Field label="Student school" name="student_school" required err={errs.student_school} />
-          <Field label="Grade (fall '26)" name="student_grade" required err={errs.student_grade} placeholder="e.g. 9th" />
+          <Field label="Phone / WhatsApp" name="phone" required err={errs.phone} type="tel" autoComplete="tel" />
         </Row>
 
-        <WeekPicker
-          selected={weeks}
-          onToggle={toggleWeek}
-          allSelected={allSelected}
-          onToggleAll={toggleAll}
-          err={errs.weeks}
+        <Segmented
+          label="What's this for?"
+          value={track}
+          onChange={setTrack}
+          options={[
+            { value: "business",     label: "My business" },
+            { value: "professional", label: "My profession" },
+            { value: "everyday",     label: "Everyday life" },
+          ]}
         />
 
         <Segmented
-          label="Coding / build experience"
+          label="Experience with AI"
           value={exp}
           onChange={setExp}
           options={[
@@ -270,7 +276,38 @@ export function CampRegistrationForm({
           ]}
         />
 
-        <Field label="Allergies / accommodations (optional)" name="notes" textarea placeholder="Anything we should know to support your student…" />
+        <Row>
+          <Segmented
+            label="Format"
+            value={format}
+            onChange={setFormat}
+            options={[
+              { value: "in_person", label: "In person" },
+              { value: "online",    label: "Online" },
+            ]}
+          />
+          <Segmented
+            label="Time slot"
+            value={slot}
+            onChange={setSlot}
+            options={[
+              { value: "early",  label: "5:00–6:30" },
+              { value: "late",   label: "6:30–8:00" },
+              { value: "either", label: "Either" },
+            ]}
+          />
+        </Row>
+
+        <DayPicker
+          selected={days}
+          onToggle={toggleDay}
+          allSelected={allSelected}
+          onToggleAll={toggleAll}
+          err={errs.days}
+        />
+
+        <Field label="Goals (optional)" name="goals" textarea placeholder="What would you like to get out of your sessions?" />
+        <Field label="How did you hear about us? (optional)" name="heard_from" placeholder="WhatsApp, a friend, Instagram…" />
 
         {status.kind === "err" && (
           <div
@@ -289,7 +326,7 @@ export function CampRegistrationForm({
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginTop: 4, flexWrap: "wrap" }}>
           <p style={{ fontSize: 11.5, color: C.ink3, margin: 0, maxWidth: 220 }}>
-            We only use this to contact you about the camp.
+            We only use this to contact you about your sessions.
           </p>
           <button
             type="submit"
@@ -308,7 +345,7 @@ export function CampRegistrationForm({
               opacity: submitting ? 0.65 : 1,
             }}
           >
-            {submitting ? "Submitting…" : "Reserve a Seat →"}
+            {submitting ? "Submitting…" : "Book My Session →"}
           </button>
         </div>
       </form>
@@ -377,7 +414,7 @@ function Segmented<T extends string>({
             <button key={opt.value} type="button" onClick={() => onChange(opt.value)}
               style={{ padding: "10px 8px", border: `1.5px solid ${active ? C.ink : C.line}`,
                        background: active ? C.ink : "rgba(255,255,255,0.6)",
-                       color: active ? C.paper : C.ink, fontFamily: BODY, fontSize: 13.5,
+                       color: active ? C.paper : C.ink, fontFamily: BODY, fontSize: 13,
                        fontWeight: active ? 600 : 400, cursor: "pointer", textAlign: "center",
                        borderRadius: 5 }}>
               {opt.label}
@@ -389,46 +426,42 @@ function Segmented<T extends string>({
   )
 }
 
-function WeekPicker({
+function DayPicker({
   selected, onToggle, allSelected, onToggleAll, err,
 }: {
   selected: string[]; onToggle: (v: string) => void
   allSelected: boolean; onToggleAll: () => void; err?: boolean
 }) {
-  const total = selected.length * PRICE_PER_WEEK
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8 }}>
         <span style={{ fontFamily: BODY, fontSize: 10.5, letterSpacing: ".12em", textTransform: "uppercase", color: err ? C.sun : C.ink2, fontWeight: 500 }}>
-          Weeks attending<span style={{ color: C.sun, marginLeft: 3 }}>*</span>
+          Days that work<span style={{ color: C.sun, marginLeft: 3 }}>*</span>
         </span>
         <button type="button" onClick={onToggleAll}
           style={{ background: "none", border: "none", padding: 0, cursor: "pointer",
                    fontFamily: BODY, fontSize: 11.5, fontWeight: 600, color: C.sun, letterSpacing: ".02em" }}>
-          {allSelected ? "Clear all" : "Full summer (all 6)"}
+          {allSelected ? "Clear all" : "Every weekday"}
         </button>
       </div>
-      <div style={{ display: "grid", gap: 7, gridTemplateColumns: "repeat(3, 1fr)" }}>
-        {WEEKS.map((w) => {
-          const active = selected.includes(w.value)
+      <div style={{ display: "grid", gap: 7, gridTemplateColumns: "repeat(5, 1fr)" }}>
+        {DAYS.map((d) => {
+          const active = selected.includes(d.value)
           return (
-            <button key={w.value} type="button" onClick={() => onToggle(w.value)}
-              style={{ padding: "8px 6px", border: `1.5px solid ${active ? C.ink : (err ? C.sun : C.line)}`,
+            <button key={d.value} type="button" onClick={() => onToggle(d.value)}
+              style={{ padding: "10px 6px", border: `1.5px solid ${active ? C.ink : (err ? C.sun : C.line)}`,
                        background: active ? C.ink : "rgba(255,255,255,0.6)",
                        color: active ? C.paper : C.ink, fontFamily: BODY, cursor: "pointer",
-                       textAlign: "center", borderRadius: 5, lineHeight: 1.15 }}>
-              <span style={{ display: "block", fontSize: 13, fontWeight: active ? 600 : 500 }}>{w.label}</span>
-              <span style={{ display: "block", fontSize: 10.5, marginTop: 2, color: active ? "rgba(245,241,234,.75)" : C.ink3 }}>
-                {w.dates}
-              </span>
+                       textAlign: "center", borderRadius: 5, fontSize: 13, fontWeight: active ? 600 : 500 }}>
+              {d.label}
             </button>
           )
         })}
       </div>
       <div style={{ fontFamily: BODY, fontSize: 12, color: C.ink2, marginTop: 1 }}>
         {selected.length === 0
-          ? <>$400 / week · pick the weeks your student will attend</>
-          : <><b style={{ color: C.ink, fontWeight: 600 }}>{selected.length} {selected.length === 1 ? "week" : "weeks"}</b> · ${total.toLocaleString()} total</>}
+          ? <>${PRICE_PER_SESSION} per session · pick the days that work for you</>
+          : <><b style={{ color: C.ink, fontWeight: 600 }}>{selected.length} {selected.length === 1 ? "day" : "days"} / week</b> · ${PRICE_PER_SESSION} per session</>}
       </div>
     </div>
   )
@@ -443,10 +476,11 @@ function SuccessPanel({ children }: { children: React.ReactNode }) {
         ✓
       </div>
       <h2 style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 32, letterSpacing: "-0.01em", margin: "0 0 10px", color: C.ink }}>
-        Seat reserved.
+        You're booked in.
       </h2>
       <p style={{ fontSize: 15, lineHeight: 1.5, color: C.ink2, maxWidth: 380, margin: "0 auto 26px" }}>
-        Registration received. We'll be in touch within 48 hours with payment options and onboarding.
+        Request received. We'll reach out over WhatsApp (436-0358) to confirm your
+        time and payment. Talk soon!
       </p>
       {children}
     </div>

@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
-import { CampFlyer, CampRegistrationForm } from "./camp-registration"
-import { C, BODY } from "./camp-theme"
+import { AiFlyer, AiRegistrationForm } from "./ai-registration"
+import { C, BODY } from "./ai-theme"
 
-const DISMISS_KEY = "campPopupDismissed"
+const DISMISS_KEY = "aiSessionPopupDismissed"
 
-export function SummerCampPopup() {
+export function AiSessionPopup() {
   const [open, setOpen] = useState(false)
 
   // Show once per browser session, after the page-loader has faded.
@@ -40,7 +40,7 @@ export function SummerCampPopup() {
     <AnimatePresence>
       {open && (
         <motion.div
-          key="camp-backdrop"
+          key="ai-backdrop"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -59,7 +59,7 @@ export function SummerCampPopup() {
           }}
         >
           <motion.div
-            key="camp-modal"
+            key="ai-modal"
             initial={{ opacity: 0, y: 24, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
@@ -67,7 +67,7 @@ export function SummerCampPopup() {
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
-            aria-label="Summer camp registration"
+            aria-label="AI Sessions registration"
             className="camp-card-grid"
             style={{
               position: "relative",
@@ -105,9 +105,9 @@ export function SummerCampPopup() {
               <X style={{ width: 18, height: 18 }} />
             </button>
 
-            <CampFlyer />
+            <AiFlyer />
 
-            <CampRegistrationForm
+            <AiRegistrationForm
               onSubmitted={() => {
                 try { sessionStorage.setItem(DISMISS_KEY, "1") } catch {}
               }}

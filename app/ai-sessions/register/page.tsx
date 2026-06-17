@@ -1,15 +1,15 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { CampFlyer, CampRegistrationForm } from "@/app/components/aether/camp-registration"
-import { C, SERIF, BODY } from "@/app/components/aether/camp-theme"
+import { AiFlyer, AiRegistrationForm } from "@/app/components/aether/ai-registration"
+import { C, BODY } from "@/app/components/aether/ai-theme"
 
 // Hidden page — not linked in the nav, and kept out of search results.
 export const metadata: Metadata = {
-  title: "Register · STEM Summer Camp — CRACH.AD",
+  title: "Book a Session · AI Sessions with CRACHAD",
   robots: { index: false, follow: false },
 }
 
-export default function CampRegisterPage() {
+export default function AiRegisterPage() {
   return (
     <main
       style={{
@@ -37,7 +37,7 @@ export default function CampRegisterPage() {
             borderBottom: `1px solid ${C.line}`,
           }}
         >
-          ← back to crach.ad
+          ← back to crachad.com
         </Link>
 
         <div
@@ -50,8 +50,8 @@ export default function CampRegisterPage() {
             border: `1px solid ${C.line}`,
           }}
         >
-          <CampFlyer whiteText />
-          <CampRegistrationForm
+          <AiFlyer whiteText />
+          <AiRegistrationForm
             successAction={
               <Link
                 href="/"

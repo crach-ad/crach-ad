@@ -114,6 +114,57 @@ export function AiFlyer({ whiteText = false }: { whiteText?: boolean }) {
           </li>
         ))}
       </ul>
+
+      <div
+        style={{
+          marginTop: 22,
+          paddingTop: 18,
+          borderTop: "1px solid rgba(255,255,255,.16)",
+        }}
+      >
+        <div
+          style={{
+            fontFamily: BODY,
+            fontSize: 11,
+            letterSpacing: ".2em",
+            textTransform: "uppercase",
+            fontWeight: 600,
+            color: eyebrowColor,
+            marginBottom: 12,
+          }}
+        >
+          What we'll cover
+        </div>
+        <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 9 }}>
+          {[
+            { t: "Intro to AI", d: "what it is & what it can (and can't) do" },
+            { t: "LLM basics", d: "how tools like ChatGPT & Claude work" },
+            { t: "Prompting that gets results", d: "ask AI the right way" },
+            { t: "Efficiency tools by industry", d: "the latest tools for your work" },
+            { t: "Safe & smart use", d: "privacy, accuracy & common pitfalls" },
+            { t: "Hands-on automation", d: "put it to work on a real task of yours" },
+          ].map((item) => (
+            <li
+              key={item.t}
+              style={{
+                fontFamily: BODY,
+                display: "flex",
+                gap: 8,
+                alignItems: "baseline",
+                lineHeight: 1.3,
+              }}
+            >
+              <span style={{ color: bulletMarker, fontWeight: 700 }}>›</span>
+              <span>
+                <span style={{ fontSize: 13.5, fontWeight: 600, color: bulletText }}>{item.t}</span>
+                <span style={{ fontSize: 12.5, color: whiteText ? "rgba(255,255,255,.78)" : "rgba(255,255,255,.66)" }}>
+                  {" "}— {item.d}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

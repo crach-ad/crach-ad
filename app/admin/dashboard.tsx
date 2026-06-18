@@ -12,7 +12,7 @@ const DAYS = ["mon", "tue", "wed", "thu", "fri"] as const
 const DAY_LABEL: Record<string, string> = {
   mon: "Mon", tue: "Tue", wed: "Wed", thu: "Thu", fri: "Fri",
 }
-const PRICE_PER_SESSION = 70
+const PRICE_PER_SESSION = 100
 
 const TRACK_LABEL: Record<string, string> = {
   business: "Business", professional: "Professional", everyday: "Everyday",

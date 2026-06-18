@@ -15,4 +15,4 @@ export const C = {
 export const SERIF = "'Instrument Serif', serif"
 export const BODY  = "'Barlow', sans-serif"
 
-export const PRICE_PER_SESSION = 70
+export const PRICE_PER_SESSION = 100

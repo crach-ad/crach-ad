@@ -17,7 +17,7 @@ export const DAY_META: Record<string, { label: string }> = {
   thu: { label: "Thu" },
   fri: { label: "Fri" },
 }
-export const PRICE_PER_SESSION = 70
+export const PRICE_PER_SESSION = 100
 
 export type AiRow = {
   id: string

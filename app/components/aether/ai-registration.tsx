@@ -93,9 +93,9 @@ export function AiFlyer({ whiteText = false }: { whiteText?: boolean }) {
         {[
           "All ages · business, professionals & everyday life",
           "Mon–Fri, 5–8 pm · Meridian STEM Lab",
-          "Two slots: 5:00–6:30 or 6:30–8:00 · $70 / session",
+          "Two 1.5-hour slots: 5:00–6:30 or 6:30–8:00",
+          "$100 per session · device + AI usage costs included",
           "In person or online · small groups",
-          "Device use + AI usage costs included",
         ].map((line) => (
           <li
             key={line}
@@ -232,7 +232,7 @@ export function AiRegistrationForm({
           marginBottom: 8,
         }}
       >
-        Now Booking · $70 / session
+        Now Booking · $100 / session
       </div>
       <h2
         style={{

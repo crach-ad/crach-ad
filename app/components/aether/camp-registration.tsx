@@ -83,7 +83,7 @@ export function CampFlyer({ whiteText = false }: { whiteText?: boolean }) {
           "Methodist Church · Spanish Wells",
           "Ages 7–13 · $25 per camper",
           "Take home a custom 3D-printed token",
-          "Spaces are limited",
+          "Limited to 30 spots — register today",
         ].map((line) => (
           <li
             key={line}
@@ -256,7 +256,7 @@ export function CampRegistrationForm({
           marginBottom: 8,
         }}
       >
-        Now Enrolling · ${FEE} · Mon June 29
+        Now Enrolling · ${FEE} · Only 30 spots
       </div>
       <h2
         style={{

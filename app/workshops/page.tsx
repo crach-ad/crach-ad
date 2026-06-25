@@ -44,7 +44,7 @@ export default function WorkshopsPage() {
                     <p className="text-sm text-muted-foreground">
                       A fun, hands-on one-day camp at the Methodist Church in Spanish Wells where STEM meets
                       language — basic Mandarin, 3D printing &amp; design, and coding challenges. Every camper
-                      takes home a custom 3D-printed token. $25 · spaces are limited.
+                      takes home a custom 3D-printed token. $25 · limited to 30 spots.
                     </p>
                   </CardContent>
                   <CardFooter>

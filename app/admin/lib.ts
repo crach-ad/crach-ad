@@ -78,3 +78,29 @@ export async function fetchRegistrations(): Promise<AiRow[]> {
   }
   return res.json()
 }
+
+// ── Spanish Wells STEM & Mandarin Exposure Camp (one-day, $25) ──────────────
+export const CAMP_FEE = 25
+
+export type CampRow = {
+  id: string
+  created_at: string
+  guardian_name: string
+  camper_name: string
+  camper_age: number
+  email: string
+  phone: string
+  experience: string
+  notes: string | null
+  heard_from: string | null
+  status: Status
+}
+
+export async function fetchCampRegistrations(): Promise<CampRow[]> {
+  const res = await sbFetch("stem_camp_registrations?select=*&order=created_at.desc")
+  if (!res.ok) {
+    const body = await res.text().catch(() => "")
+    throw new Error(`Load failed (HTTP ${res.status})${body ? ` — ${body.slice(0, 180)}` : ""}`)
+  }
+  return res.json()
+}

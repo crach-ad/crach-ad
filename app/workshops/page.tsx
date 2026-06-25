@@ -26,6 +26,32 @@ export default function WorkshopsPage() {
               <Separator className="my-4" />
             </div>
             <div className="grid gap-6 pt-6 md:grid-cols-2">
+              <Link href="/spanish-wells-camp/register" className="block">
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader>
+                    <CardTitle>STEM &amp; Mandarin Exposure Camp — Spanish Wells</CardTitle>
+                    <CardDescription>Ages 7–13 · Monday, June 29 · 9:00 AM – 12:00 PM</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg bg-white">
+                      <Image
+                        src="/images/spanish-wells-stem-camp.png"
+                        fill
+                        alt="STEM & Mandarin Exposure Camp flyer — Spanish Wells"
+                        className="object-contain object-center"
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      A fun, hands-on one-day camp at the Methodist Church in Spanish Wells where STEM meets
+                      language — basic Mandarin, 3D printing &amp; design, and coding challenges. Every camper
+                      takes home a custom 3D-printed token. $25 · spaces are limited.
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="default">Register</Button>
+                  </CardFooter>
+                </Card>
+              </Link>
               <Link href="/ai-sessions/register" className="block">
                 <Card className="h-full transition-colors hover:bg-muted/50">
                   <CardHeader>

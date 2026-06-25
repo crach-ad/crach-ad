@@ -1,8 +1,8 @@
 "use client"
 
 import { useMemo, useState, useTransition } from "react"
-import { Download, LogOut, Search, Trash2 } from "lucide-react"
-import { updateStatus, deleteRegistration, logout } from "./actions"
+import { Download, Search, Trash2 } from "lucide-react"
+import { updateStatus, deleteRegistration } from "./actions"
 
 // Mirror of lib.ts constants — kept here so this client component never imports the server-only lib.
 const STATUSES = ["new", "contacted", "confirmed", "paid", "cancelled"] as const
@@ -157,23 +157,15 @@ export function Dashboard({ rows: initial, error }: { rows: AiRow[]; error: stri
   }
 
   return (
-    <main style={{ minHeight: "100vh", background: C.paper, color: C.ink, fontFamily: BODY, padding: "32px 24px 64px" }}>
-      <div style={{ maxWidth: 1180, margin: "0 auto" }}>
+    <div>
         {/* Header */}
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 16, flexWrap: "wrap", marginBottom: 22 }}>
-          <div>
-            <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: C.sun, fontWeight: 600, marginBottom: 4 }}>
-              CRACHAD · AI Sessions
-            </div>
-            <h1 style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "2.6rem", lineHeight: 0.95, letterSpacing: "-0.02em", margin: 0 }}>
-              Session bookings
-            </h1>
+        <div style={{ marginBottom: 22 }}>
+          <div style={{ fontSize: 11, letterSpacing: ".2em", textTransform: "uppercase", color: C.sun, fontWeight: 600, marginBottom: 4 }}>
+            CRACHAD · AI Sessions
           </div>
-          <form action={logout}>
-            <button type="submit" style={ghostBtn}>
-              <LogOut style={{ width: 15, height: 15 }} /> Sign out
-            </button>
-          </form>
+          <h1 style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: "2.6rem", lineHeight: 0.95, letterSpacing: "-0.02em", margin: 0 }}>
+            Session bookings
+          </h1>
         </div>
 
         {/* Stats */}
@@ -313,8 +305,7 @@ export function Dashboard({ rows: initial, error }: { rows: AiRow[]; error: stri
             </tbody>
           </table>
         </div>
-      </div>
-    </main>
+    </div>
   )
 }
 

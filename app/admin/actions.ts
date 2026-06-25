@@ -57,3 +57,26 @@ export async function deleteRegistration(id: string) {
   if (!res.ok) throw new Error(`Delete failed (HTTP ${res.status})`)
   revalidatePath("/admin")
 }
+
+// ── STEM camp registrations ─────────────────────────────────────────────────
+export async function updateCampStatus(id: string, status: string) {
+  if (!(await isAuthed())) throw new Error("Unauthorized")
+  if (!STATUSES.includes(status as Status)) throw new Error("Invalid status")
+  const res = await sbFetch(`stem_camp_registrations?id=eq.${encodeURIComponent(id)}`, {
+    method: "PATCH",
+    headers: { Prefer: "return=minimal" },
+    body: JSON.stringify({ status }),
+  })
+  if (!res.ok) throw new Error(`Update failed (HTTP ${res.status})`)
+  revalidatePath("/admin")
+}
+
+export async function deleteCampRegistration(id: string) {
+  if (!(await isAuthed())) throw new Error("Unauthorized")
+  const res = await sbFetch(`stem_camp_registrations?id=eq.${encodeURIComponent(id)}`, {
+    method: "DELETE",
+    headers: { Prefer: "return=minimal" },
+  })
+  if (!res.ok) throw new Error(`Delete failed (HTTP ${res.status})`)
+  revalidatePath("/admin")
+}

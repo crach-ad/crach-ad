@@ -1,6 +1,10 @@
 import { redirect } from "next/navigation"
-import { isAuthed, serviceKey, fetchRegistrations, type AiRow } from "./lib"
-import { Dashboard } from "./dashboard"
+import {
+  isAuthed, serviceKey,
+  fetchRegistrations, fetchCampRegistrations,
+  type AiRow, type CampRow,
+} from "./lib"
+import { AdminTabs } from "./admin-tabs"
 
 export const dynamic = "force-dynamic"
 
@@ -13,15 +17,28 @@ export default async function AdminPage() {
     )
   }
 
-  let rows: AiRow[] = []
-  let error: string | null = null
+  let aiRows: AiRow[] = []
+  let aiError: string | null = null
   try {
-    rows = await fetchRegistrations()
+    aiRows = await fetchRegistrations()
   } catch (e: any) {
-    error = e?.message || "Failed to load registrations."
+    aiError = e?.message || "Failed to load AI session registrations."
   }
 
-  return <Dashboard rows={rows} error={error} />
+  let campRows: CampRow[] = []
+  let campError: string | null = null
+  try {
+    campRows = await fetchCampRegistrations()
+  } catch (e: any) {
+    campError = e?.message || "Failed to load camp registrations."
+  }
+
+  return (
+    <AdminTabs
+      ai={{ rows: aiRows, error: aiError }}
+      camp={{ rows: campRows, error: campError }}
+    />
+  )
 }
 
 function ConfigError({ msg }: { msg: string }) {

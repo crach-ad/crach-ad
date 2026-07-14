@@ -20,6 +20,37 @@ import { Badge } from "@/components/ui/badge"
 
 const projects = [
   {
+    title: "Laingify",
+    description: "A learning platform for the Product Design & Innovation program — badge-based modules, an AI Help Sprite, and a full instructor review console",
+    githubUrl: "https://github.com/crach-ad/laingify",
+    liveUrl: "https://laingify.vercel.app",
+    image: "https://placehold.co/600x400/0A0B0E/B6F24D?text=Laingify",
+    tags: ["Next.js", "React", "TypeScript", "Prisma", "SQLite", "Tailwind CSS", "Gemini"],
+    features: [
+      {
+        title: "Badge-Based Modules",
+        description: "Six hands-on modules — CAD to a line-following vehicle capstone — each completed through evidence-backed criteria that award badges",
+        icon: Box,
+      },
+      {
+        title: "AI Help Sprite",
+        description: "A personal learning companion that gives hints and insight (never answers), plus automated formative feedback on written submissions",
+        icon: Brain,
+      },
+      {
+        title: "Instructor Console",
+        description: "A live review queue for human-judged criteria, one-click approvals, threaded discussion replies, and per-learner profiles with portfolios",
+        icon: Laptop,
+      },
+      {
+        title: "Age-Band Design",
+        description: "UI density, tone, and auth tiers adapt to the learner's age band, with PIN-protected class codes for young learners",
+        icon: Cpu,
+      },
+    ],
+    overview: "Laingify is the learning platform behind a 13-week Product Design & Innovation program that takes girls from a blank sketch to a working, programmed, 3D-printed product. Learners join their cohort with a class code, work through badge-based modules, submit photos and write-ups as evidence, and get formative AI feedback plus a personal 'Help Sprite' tuned to guide rather than answer. Instructors see a live queue of work awaiting human judgment, approve criteria with one click (completing modules and assembling each girl's portfolio), and reply in discussion threads. Try the live demo: join cohort PDI-C1 as any learner with PIN 1234."
+  },
+  {
     title: "crach.move",
     description: "A biometric analysis system for visualizing and analyzing motion tracking data",
     githubUrl: "https://github.com/crach-ad/crach.move",

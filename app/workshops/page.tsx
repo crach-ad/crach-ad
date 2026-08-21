@@ -26,58 +26,6 @@ export default function WorkshopsPage() {
               <Separator className="my-4" />
             </div>
             <div className="grid gap-6 pt-6 md:grid-cols-2">
-              <Link href="/spanish-wells-camp/register" className="block">
-                <Card className="h-full transition-colors hover:bg-muted/50">
-                  <CardHeader>
-                    <CardTitle>STEM &amp; Mandarin Exposure Camp — Spanish Wells</CardTitle>
-                    <CardDescription>Ages 7–13 · Monday, June 29 · 9:00 AM – 12:00 PM</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg bg-white">
-                      <Image
-                        src="/images/spanish-wells-stem-camp.png"
-                        fill
-                        alt="STEM & Mandarin Exposure Camp flyer — Spanish Wells"
-                        className="object-contain object-center"
-                      />
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      A fun, hands-on one-day camp at the Methodist Church in Spanish Wells where STEM meets
-                      language — basic Mandarin, 3D printing &amp; design, and coding challenges. Every camper
-                      takes home a custom 3D-printed token. $25 · limited to 30 spots.
-                    </p>
-                  </CardContent>
-                  <CardFooter>
-                    <Button variant="default">Register</Button>
-                  </CardFooter>
-                </Card>
-              </Link>
-              <Link href="/ai-sessions/register" className="block">
-                <Card className="h-full transition-colors hover:bg-muted/50">
-                  <CardHeader>
-                    <CardTitle>AI Sessions with CRACHAD</CardTitle>
-                    <CardDescription>Practical AI training · all ages · in person or online</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg bg-white">
-                      <Image
-                        src="/human-in-the-loop-color.png"
-                        fill
-                        alt="Human in the Loop — AI training for professionals"
-                        className="object-contain object-center p-8"
-                      />
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      Hands-on AI sessions for business, professionals, and everyday life — intro to AI, LLM
-                      basics, prompting, and the latest efficiency tools for your work. Mon–Fri, 5–8 pm at
-                      Meridian STEM Lab. $100 per 1.5-hour session.
-                    </p>
-                  </CardContent>
-                  <CardFooter>
-                    <Button variant="default">Book a Session</Button>
-                  </CardFooter>
-                </Card>
-              </Link>
               <Link href="/workshops/winners-camp" className="block">
                 <Card className="h-full transition-colors hover:bg-muted/50">
                   <CardHeader>
@@ -127,6 +75,58 @@ export default function WorkshopsPage() {
                   </CardContent>
                   <CardFooter>
                     <Button variant="default">Learn More</Button>
+                  </CardFooter>
+                </Card>
+              </Link>
+              <Link href="/spanish-wells-camp/register" className="block">
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader>
+                    <CardTitle>STEM &amp; Mandarin Exposure Camp — Spanish Wells</CardTitle>
+                    <CardDescription>Ages 7–13 · Monday, June 29 · 9:00 AM – 12:00 PM</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg bg-white">
+                      <Image
+                        src="/images/spanish-wells-stem-camp.png"
+                        fill
+                        alt="STEM & Mandarin Exposure Camp flyer — Spanish Wells"
+                        className="object-contain object-center"
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      A fun, hands-on one-day camp at the Methodist Church in Spanish Wells where STEM meets
+                      language — basic Mandarin, 3D printing &amp; design, and coding challenges. Every camper
+                      takes home a custom 3D-printed token. $25 · limited to 30 spots.
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="default">Register</Button>
+                  </CardFooter>
+                </Card>
+              </Link>
+              <Link href="/ai-sessions/register" className="block">
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader>
+                    <CardTitle>AI Sessions with CRACHAD</CardTitle>
+                    <CardDescription>Practical AI training · all ages · in person or online</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg bg-white">
+                      <Image
+                        src="/human-in-the-loop-color.png"
+                        fill
+                        alt="Human in the Loop — AI training for professionals"
+                        className="object-contain object-center p-8"
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Hands-on AI sessions for business, professionals, and everyday life — intro to AI, LLM
+                      basics, prompting, and the latest efficiency tools for your work. Mon–Fri, 5–8 pm at
+                      Meridian STEM Lab. $100 per 1.5-hour session.
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="default">Book a Session</Button>
                   </CardFooter>
                 </Card>
               </Link>

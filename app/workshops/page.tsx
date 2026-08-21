@@ -78,6 +78,58 @@ export default function WorkshopsPage() {
                   </CardFooter>
                 </Card>
               </Link>
+              <Link href="/workshops/winners-camp" className="block">
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader>
+                    <CardTitle>The Winners&apos; Camp — STEM &amp; AI Program</CardTitle>
+                    <CardDescription>Wenty Ford Sports Foundation · 40 campers, ages 11–14 · July 2026</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg bg-white">
+                      <Image
+                        src="/images/winners-camp-flyer.jpg"
+                        fill
+                        alt="The Winners' Camp Summer 2026 flyer featuring Crachad Laing"
+                        className="object-contain object-center"
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      A STEM &amp; AI track delivered in partnership with the Wenty Ford Sports Foundation in Nassau —
+                      coding with Lightbot, two 3D-printed Tinkercad builds, structural analysis tied to hurricane
+                      resilience, and game design with AI as a coaching tool.
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="default">Learn More</Button>
+                  </CardFooter>
+                </Card>
+              </Link>
+              <Link href="/workshops/future-ready-abaco" className="block">
+                <Card className="h-full transition-colors hover:bg-muted/50">
+                  <CardHeader>
+                    <CardTitle>Abaco Future Ready Academy — STEM &amp; AI Camp</CardTitle>
+                    <CardDescription>Week-long camp · ages 10–17 · Abaco · August 2026</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4 relative aspect-square overflow-hidden rounded-lg">
+                      <Image
+                        src="/images/future-ready-abaco-classroom.jpg"
+                        fill
+                        alt="Instructors leading a session with campers at the Abaco Future Ready Academy"
+                        className="object-cover object-center"
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Six modules across one week — coding, CAD &amp; 3D printing, Arduino electronics, VR/AR, AI &amp;
+                      digital safety — ending in a Shark Tank showcase. Happy Human built the curriculum and onboarded
+                      the volunteer instructor team.
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="default">Learn More</Button>
+                  </CardFooter>
+                </Card>
+              </Link>
               <Link href="/workshops/teacher-training" className="block">
                 <Card className="h-full transition-colors hover:bg-muted/50">
                   <CardHeader>

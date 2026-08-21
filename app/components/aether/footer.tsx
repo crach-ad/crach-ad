@@ -69,7 +69,6 @@ export function AetherFooter() {
           >
             {[
               { name: "Insights", href: "/insights" },
-              { name: "Summer Programs", href: "/summer-programs" },
               { name: "Workshops", href: "/workshops" },
               { name: "Contact", href: "/collaborators" },
             ].map((l) => (

@@ -22,6 +22,15 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async rewrites() {
+    return [{ source: "/timer", destination: "/timer/index.html" }]
+  },
+  async headers() {
+    return [{
+      source: "/timer/:path*",
+      headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }],
+    }]
+  },
   async redirects() {
     return [
       {

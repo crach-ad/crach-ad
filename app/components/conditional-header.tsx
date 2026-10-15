@@ -8,5 +8,6 @@ export function ConditionalHeader() {
   if (pathname === "/") return null
   if (pathname?.startsWith("/stem-program")) return null
   if (pathname?.startsWith("/humanintheloop")) return null
+  if (pathname === "/gateway") return null
   return <AnimatedHeader />
 }

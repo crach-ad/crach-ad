@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
-import Script from "next/script"
-import { PayButton } from "./pay-button"
+import { Checkout } from "./checkout"
 
 // Unlisted test page — not linked anywhere and kept out of search indexes.
 export const metadata: Metadata = {
@@ -11,8 +10,7 @@ export const metadata: Metadata = {
 export default function GatewayPage() {
   return (
     <main className="min-h-screen flex items-center justify-center">
-      <Script src="https://soltarx.com/nlg.js" strategy="afterInteractive" />
-      <PayButton />
+      <Checkout />
     </main>
   )
 }

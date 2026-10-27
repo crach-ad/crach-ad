@@ -29,14 +29,14 @@ function renderCrest(s,fill){
   p.group.setAttribute('transform',`translate(${p.dx*motion} ${p.dy*motion}) rotate(${p.angle*motion} ${p.cx} ${p.cy})`);
   p.group.setAttribute('opacity',1-spread*(reduced?.matches ? .25 : .35));
  });
- logo.setAttribute('aria-label',s.rotation?'School crest breaking into fragments and reassembling before the next meeting':'School crest filling during the five-minute meeting');
+ logo.setAttribute('aria-label',s.rotation?'School crest breaking into fragments and reassembling before the next meeting':'School crest filling during the four-minute meeting');
 }
-function timing(){return demo?{meeting:10000,rotation:5000,cycle:15000}:{meeting:300000,rotation:60000,cycle:360000};}
+function timing(){return demo?{meeting:10000,rotation:5000,cycle:15000}:{meeting:240000,rotation:60000,cycle:300000};}
 function currentElapsed(){return running?Math.max(0,Date.now()-anchor):elapsed;}
 function snapshot(){const t=timing(),e=currentElapsed(),round=Math.floor(e/t.cycle),within=e%t.cycle,rotation=within>=t.meeting;return {t,e,round,rotation,phaseIndex:round*2+(rotation?1:0),fraction:rotation?(within-t.meeting)/t.rotation:within/t.meeting};}
-const storageKey='conference-timer-v4';
-function save(){const s=snapshot();try{localStorage.setItem(storageKey,JSON.stringify({modelContent:{sound:q('[data-sound]').checked,awake:q('[data-awake]').checked,session:baseSession+(demo?0:s.round)},privateContent:{version:4,running,elapsed:s.e,anchor,demo,baseSession}}));}catch{}}
-function restore(state){const m=state?.modelContent,p=state?.privateContent;if(m){baseSession=Math.max(1,Math.floor(Number(m.session)||1));q('[data-sound]').checked=m.sound!==false;q('[data-awake]').checked=m.awake!==false;}if(p?.version===4&&Number.isFinite(p.elapsed)&&p.elapsed>=0){demo=!!p.demo;elapsed=p.elapsed;baseSession=Math.max(1,Math.floor(Number(p.baseSession)||baseSession));running=!!p.running&&Number.isFinite(p.anchor);anchor=p.anchor||0;}lastPhaseIndex=snapshot().phaseIndex;render(false);}
+const storageKey='conference-timer-v5';
+function save(){const s=snapshot();try{localStorage.setItem(storageKey,JSON.stringify({modelContent:{sound:q('[data-sound]').checked,awake:q('[data-awake]').checked,session:baseSession+(demo?0:s.round)},privateContent:{version:5,running,elapsed:s.e,anchor,demo,baseSession}}));}catch{}}
+function restore(state){const m=state?.modelContent,p=state?.privateContent;if(m){baseSession=Math.max(1,Math.floor(Number(m.session)||1));q('[data-sound]').checked=m.sound!==false;q('[data-awake]').checked=m.awake!==false;}if(p?.version===5&&Number.isFinite(p.elapsed)&&p.elapsed>=0){demo=!!p.demo;elapsed=p.elapsed;baseSession=Math.max(1,Math.floor(Number(p.baseSession)||baseSession));running=!!p.running&&Number.isFinite(p.anchor);anchor=p.anchor||0;}lastPhaseIndex=snapshot().phaseIndex;render(false);}
 function prepareAudio(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)throw Error();if(!audio)audio=new C();audio.resume().catch(()=>q('[data-notice]').textContent='Audio unavailable. The visual timer will continue.');}catch{q('[data-notice]').textContent='Audio unavailable. The visual timer will continue.';}}
 function bell(rotation=true){if(!q('[data-sound]').checked)return;prepareAudio();if(!audio)return;const now=audio.currentTime;const notes=rotation?[0,.65,1.3]:[0,.45];notes.forEach(delay=>{[660,1320,1980].forEach((freq,i)=>{const o=audio.createOscillator(),g=audio.createGain();o.frequency.value=rotation?freq:freq*1.25;g.gain.setValueAtTime(0,now+delay);g.gain.linearRampToValueAtTime(.16/(i+1),now+delay+.008);g.gain.exponentialRampToValueAtTime(.0001,now+delay+1.6);o.connect(g);g.connect(audio.destination);o.start(now+delay);o.stop(now+delay+1.7);});});}
 const clockFormat=new Intl.DateTimeFormat(undefined,{hour:'numeric',minute:'2-digit',hour12:true});
@@ -46,7 +46,7 @@ const clockMinute=Math.floor(Date.now()/60000);
 if(clockMinute!==lastClockMinute){lastClockMinute=clockMinute;const label=clockFormat.format(Date.now());q('[data-clock]').textContent=label;q('[data-clock]').setAttribute('aria-label','Current local time: '+label);}
 let s=snapshot();if(demo&&s.e>=s.t.cycle){if(allowBell&&running)bell(false);running=false;elapsed=0;demo=false;demoDone=true;lastPhaseIndex=0;s=snapshot();if(allowBell)save();}
 if(s.phaseIndex!==lastPhaseIndex){if(allowBell&&running)bell(s.rotation);lastPhaseIndex=s.phaseIndex;if(allowBell)save();}
-const fill=s.rotation?1-s.fraction:s.fraction,seconds=Math.ceil((s.rotation?60:300)*(1-s.fraction)-1e-9);
+const fill=s.rotation?1-s.fraction:s.fraction,seconds=Math.ceil((s.rotation?60:240)*(1-s.fraction)-1e-9);
 q('[data-time]').textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');q('[data-phase]').textContent=(demo?'Demo · ':'')+(s.rotation?'Rotation':'Meeting');
 q('[data-status]').textContent=!running&&s.e===0?(demoDone?'Demo complete. Ready to begin.':''):!running?'Paused — resume when ready.':s.rotation?'Time to move to your next meeting.':seconds<=30?'30 seconds — wrap up.':'';
 root.classList.toggle('warning',running&&!s.rotation&&seconds<=30);root.classList.toggle('is-running',running);if(!running)root.classList.remove('controls-quiet');

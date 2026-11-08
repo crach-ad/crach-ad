@@ -1,31 +1,47 @@
 "use client"
 
 import Script from "next/script"
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 declare global {
   interface Window {
-    NLG?: { checkout: (opts: { gateway: string; amount: number; ref: string; onClose?: () => void }) => void }
+    NLG?: { checkout: (options: {
+      gateway: string; amount: number; currency: string; ref: string;
+      item: string; onSuccess?: () => void
+    }) => void }
   }
 }
 
 export function Checkout() {
-  const [closed, setClosed] = useState(false)
-
-  const open = () => {
-    setClosed(false)
-    window.NLG?.checkout({ gateway: "a1f8956f", amount: 99.0, ref: "ORDER-123", onClose: () => setClosed(true) })
+  const [ready, setReady] = useState(false)
+  const [error, setError] = useState("")
+  const orderRef = useRef<string | null>(null)
+  function openCheckout() {
+    if (!window.NLG) return
+    orderRef.current ??= `CRACHAD-${crypto.randomUUID()}`
+    window.NLG.checkout({
+      gateway: "a1f8956f",
+      amount: 5,
+      currency: "USD",
+      ref: orderRef.current,
+      item: "Crachad test order",
+      onSuccess: () => { orderRef.current = null },
+    })
   }
-
   return (
-    <>
-      {/* onReady fires on first load and again on every remount, so the modal opens immediately. */}
-      <Script src="https://soltarx.com/nlg.js" onReady={open} />
-      {closed && (
-        <button className="rounded-md border px-5 py-2.5" onClick={open}>
-          Reopen checkout
-        </button>
-      )}
-    </>
+    <section className="space-y-6 border border-neutral-300 rounded-xl p-10 text-center max-w-lg mx-5">
+      <Script src="https://soltarx.com/nlg.js" onReady={() => setReady(true)}
+        onError={() => setError("Unable to load the payment form. Refresh to retry.")} />
+      <p className="text-sm uppercase tracking-widest">Crach Co · Payment demonstration</p>
+      <h1 className="text-3xl font-bold">Crachad test order</h1>
+      <p className="text-4xl font-semibold">$5.00 <span className="text-base">USD</span></p>
+      <p className="text-sm">Live payment — your card will be charged $5.00 if you complete the payment.</p>
+      <button disabled={!ready} onClick={openCheckout}
+        className="rounded bg-black text-white w-full px-6 py-4 disabled:opacity-50">
+        {ready ? "Checkout — $5.00" : "Loading…"}
+      </button>
+      <p className="text-sm">Secure payment powered by SoltarX</p>
+      {error && <p role="alert">{error}</p>}
+    </section>
   )
 }

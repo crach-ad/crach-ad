@@ -4,13 +4,13 @@ import { CATALOG } from './demo-catalog'
 export type Order = { ref: string; gateway: string; currency: 'USD'; totalCents: number; subtotalCents: number; discountCents: number; lines: { id: string; quantity: number }[]; coupon: string; expires: number }
 function secret() { const s = process.env.DEMO_STOREFRONT_SECRET; if (!s || s.length < 32) throw Error('Demo checkout is not configured'); return s }
 export function signOrder(order: Order) { const data=Buffer.from(JSON.stringify(order)).toString('base64url');return data+'.'+createHmac('sha256',secret()).update(data).digest('base64url') }
-export function readOrder(token: unknown): Order {
+export function readOrder(token: unknown, expectedGateway = GATEWAY): Order {
   if(typeof token!=='string'||token.length>6000)throw Error('Invalid order')
   const [data,signature,...extra]=token.split('.');if(!data||!signature||extra.length)throw Error('Invalid order')
   const expected=createHmac('sha256',secret()).update(data).digest();const actual=Buffer.from(signature,'base64url')
   if(actual.length!==expected.length||!timingSafeEqual(actual,expected))throw Error('Invalid order')
   const order=JSON.parse(Buffer.from(data,'base64url').toString()) as Order
-  if(order.gateway!==GATEWAY||order.currency!=='USD'||!/^SHOP-[0-9a-f-]{36}$/.test(order.ref)||!Number.isSafeInteger(order.totalCents)||order.totalCents<50||order.totalCents>10000||order.expires<Date.now())throw Error('Order expired or invalid')
+  if(order.gateway!==expectedGateway||order.currency!=='USD'||!/^SHOP-[0-9a-f-]{36}$/.test(order.ref)||!Number.isSafeInteger(order.totalCents)||order.totalCents<50||order.totalCents>10000||order.expires<Date.now())throw Error('Order expired or invalid')
   return order
 }
 export function priceCart(body: any) {
